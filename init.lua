@@ -198,7 +198,7 @@ require('lazy').setup({
 
 
 
-
+require('nvim-tree').setup {}
 
 
 --Icons
