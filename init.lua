@@ -26,23 +26,23 @@ I have left several `:help X` comments throughout the init.lua
 You should run that command and read that help section for more information.
 
 In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
+These are for you, the reader to help understand what is happening. feel free to delete
 them once you know what you're doing, but they should serve as a guide for when you
 are first encountering a few different constructs in your nvim config.
 
-I hope you enjoy your Neovim journey,
-- TJ
+i hope you enjoy your neovim journey,
+- tj
 
-P.S. You can delete this when you're done too. It's your config now :)
+p.s. you can delete this when you're done too. it's your config now :)
 --]]
 
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- set <space> as the leader key
+-- see `:help mapleader`
+--  note: must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Install package manager
+-- install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -58,28 +58,47 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
+-- note: here is where you install your plugins.
+--  you can configure plugins using the `config` key.
 --
---  You can also configure plugins after the setup call,
+--  you can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
+  -- note: first, some plugins that don't require any configuration
 
-  -- Git related plugins
+  -- git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Detect tabstop and shiftwidth automatically
+  -- detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- auto format files 
+    'sbdchd/neoformat',
+  --nuget integration
+  --- dependencies required 
+  'mattn/webapi-vim',
+  'junegunn/fzf.vim',
+  'Shougo/deoplete.nvim',
+  --- package
+  'markwoodhall/vim-nuget',
+  --File tree
+  --File ops in file tree
+  'kyazdani42/nvim-tree.lua',
+  'nvim-tree/nvim-web-devicons',
+  --Function signature 
+  'ray-x/lsp_signature.nvim',
+
+  -- autopairs
+    'windwp/nvim-autopairs',
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
+      { 'williamboman/mason.nvim',
+        config = true },
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
@@ -111,14 +130,14 @@ require('lazy').setup({
       },
     },
   },
-
-  { -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+  -- Theme 
+  {'doums/darcula',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'darcula'
     end,
   },
+  
 
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -126,7 +145,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'darcula',
         component_separators = '|',
         section_separators = '',
       },
@@ -187,9 +206,97 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
+
+
+-- PLUGIN SETUP -- require("nvim-autopairs").setup{} require("lsp-format").setup {}
+
+    -- ... custom code ...
+require("lspconfig").gopls.setup { on_attach = on_attach }
+
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
+local example_setup = {
+  on_attach = function(bufnr)
+    require "lsp_signature".on_attach({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "rounded"
+      }
+    }, bufnr)
+  end,
+}
+
+
+require "lsp_signature".setup(example_setup)
+
+--Icons
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ -- globally enable different highlight colors per icon (default to true)
+ -- if set to false all icons will have the default icon's color
+ color_icons = true;
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+ -- globally enable "strict" selection of icons - icon will be looked up in
+ -- different tables, first by filename, and if not found by extension; this
+ -- prevents cases when file doesn't have any extension but still gets some icon
+ -- because its name happened to match some extension (default to false)
+ strict = true;
+ -- same as `override` but specifically for overrides by filename
+ -- takes effect when `strict` is true
+ override_by_filename = {
+  [".gitignore"] = {
+    icon = "",
+    color = "#f1502f",
+    name = "Gitignore"
+  }
+ };
+ -- same as `override` but specifically for overrides by extension
+ -- takes effect when `strict` is true
+ override_by_extension = {
+  ["log"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  }
+ };
+}
+
+
+
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- lsp show line diagnostic
+vim.diagnostic.config(
+  {
+    signs = true
+    
+
+  }
+
+)
+vim.lsp.omnifunc(1,0)
 -- Set highlight on search
 vim.o.hlsearch = false
 
