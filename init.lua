@@ -118,10 +118,10 @@ require('lazy').setup({
   },
   -- Theme
   {
-    'doums/darcula',
+    'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'darcula'
+      vim.cmd.colorscheme 'onedark'
     end,
   },
 
@@ -133,7 +133,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'darcula',
+        theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
