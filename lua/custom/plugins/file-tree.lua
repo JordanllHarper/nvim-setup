@@ -1,7 +1,7 @@
 return {
   --File tree
   --File ops in file tree
-  'kyazdani42/nvim-tree.lua',
+  'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
   config = function()
     require("nvim-tree").setup({
