@@ -128,22 +128,13 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'tokynight',
         component_separators = '|',
         section_separators = '',
       },
@@ -196,6 +187,7 @@ require('lazy').setup({
   require 'kickstart.plugins.debug',
 
   { import = 'custom.plugins' },
+  { import = 'custom.themes' },
 }, {})
 
 
