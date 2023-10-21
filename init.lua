@@ -1,11 +1,20 @@
--- My NVIM init :)
+--My NVIM init :)
 -- Based on kickstart.nvim
+-- Notes for me to remember
+-- <C> = Ctrl
+-- <CR> = Enter/Return
 --
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- disable netrw at the very start
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true
 
 -- install package manager
 --    `:help lazy.nvim.txt` for more info
@@ -128,17 +137,7 @@ require('lazy').setup({
   },
 
   {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'tokynight',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
   },
 
   {
@@ -191,9 +190,36 @@ require('lazy').setup({
 }, {})
 
 
-require('nvim-tree').setup {}
 require("transparent").setup()
 
+
+local function my_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+end
+
+
+
+
+-- nvim tree setup
+require("nvim-tree").setup({
+  on_attach = my_on_attach,
+  sort_by = "case_sensitive",
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+  },
+  disable_netrw = false
+})
+
+local nvim_tree_api = require "nvim-tree.api".tree
+
+vim.keymap.set('n', '<leader>df', nvim_tree_api.toggle, { desc = 'nvim-tree: [d]isplay [f]iles (toggle)' })
 
 
 --Icons
@@ -349,6 +375,7 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 
@@ -437,6 +464,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+
   nmap('<leader>dt', vim.lsp.buf.hover, '[d]isplay [t]ype')
   nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
   nmap('<C-CR>', vim.lsp.buf.code_action, 'code action')
@@ -446,6 +474,7 @@ local on_attach = function(_, bufnr)
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -463,6 +492,7 @@ local on_attach = function(_, bufnr)
 
   local map = vim.api.nvim_set_keymap
   local opts = { noremap = true, silent = true }
+
 
   -- Move to previous/next
   map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', opts)
@@ -497,10 +527,13 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+
+
+
 -- document existing key chains
 require('which-key').register {
   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+  ['<leader>d'] = { name = '[D]isplay', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
