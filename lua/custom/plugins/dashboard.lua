@@ -1,13 +1,8 @@
 return {
-  'nvimdev/dashboard-nvim',
+  'goolord/alpha-nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  config = function()
+    require 'alpha'.setup(require 'alpha.themes.startify'.config)
+  end
 
-  event = 'VimEnter',
-  config = {
-    theme = 'hyper',
-
-  },
-
-  --your footer,
-
-  dependencies = { { 'nvim-tree/nvim-web-devicons' } }
 }
