@@ -464,7 +464,6 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>dt', vim.lsp.buf.hover, '[d]isplay [t]ype')
   nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-  nmap('<C-CR>', vim.lsp.buf.code_action, 'code action')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -557,7 +556,7 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
   -- tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  -- html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
