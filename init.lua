@@ -1,5 +1,5 @@
---My NVIM init :)
--- Based on kickstart.nvim
+-- My NVIM init :)
+-- Based on kickstart.nvim by https://github.com/tjdevries (go check him out!)
 -- Notes for me to remember
 -- <C> = Ctrl
 -- <CR> = Enter/Return
@@ -78,9 +78,17 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
+  -- Autocompletion plugins by hrsh7th
+  {
+    'hrsh7th/cmp-cmdline',
+  },
+  {
+    'hrsh7th/cmp-buffer',
+  },
+
+  'hrsh7th/cmp-path',
 
   {
-    -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
@@ -145,6 +153,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
+  -- e.g. "gcc" for a whole line
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -548,7 +557,7 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
@@ -629,8 +638,33 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'crates' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp_document_symbol' }
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  }
+
 }
+require 'cmp'.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  })
+})
+local cmp = require 'cmp'
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources(
+    {
+      { name = path },
+    }, {
+      { name = 'cmdline' }
+    })
+})
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
