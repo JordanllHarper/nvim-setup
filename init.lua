@@ -58,10 +58,9 @@ require('lazy').setup({
     version = '^1.0.0',
   },
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+
+  -- LSP Configuration & Plugins
   {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -134,10 +133,6 @@ require('lazy').setup({
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
     },
-  },
-
-  {
-    -- See `:help lualine.txt`
   },
 
   {
@@ -289,6 +284,9 @@ vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
+
+-- Enable scroll off
+vim.o.scrolloff = 5
 
 -- Save undo history
 vim.o.undofile = true
@@ -630,6 +628,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'crates' },
   },
 }
 
