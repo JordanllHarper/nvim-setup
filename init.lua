@@ -188,14 +188,13 @@ require('lazy').setup({
 
   require 'kickstart.plugins.autoformat',
   require 'kickstart.plugins.debug',
-
   { import = 'custom.plugins' },
   { import = 'custom.themes' },
+
 }, {})
 
 
 require("transparent").setup()
-
 
 
 -- nvim tree setup
