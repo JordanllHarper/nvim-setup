@@ -199,7 +199,6 @@ require("transparent").setup()
 
 -- nvim tree setup
 require("nvim-tree").setup({
-  on_attach = my_on_attach,
   sort_by = "case_sensitive",
   renderer = {
     group_empty = true,
@@ -490,15 +489,12 @@ local on_attach = function(_, bufnr)
 
 
   -- Move to previous/next
-  map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', opts)
-  map('n', '<leader>tn', '<Cmd>BufferNext<CR>', opts)
-  -- Re-order to previous/next
-  map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-  map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+  map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', { desc = "[t]ab [p]revious" })
+  map('n', '<leader>tn', '<Cmd>BufferNext<CR>', { desc = "[t]ab [n]ext" })
   -- Pin/unpin buffer
   map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
   -- Close buffer
-  map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+  map('n', '<leader>tx', '<Cmd>BufferClose<CR>', { desc = "[t]ab cross" })
   -- Wipeout buffer
   --                 :BufferWipeout
   -- Close commands
