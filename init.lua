@@ -188,8 +188,8 @@ require('lazy').setup({
 
   require 'kickstart.plugins.autoformat',
   require 'kickstart.plugins.debug',
-  { import = 'custom.plugins' },
-  { import = 'custom.themes' },
+  { import = 'plugins' },
+  { import = 'themes' },
 
 }, {})
 
