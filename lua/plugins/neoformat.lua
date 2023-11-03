@@ -2,7 +2,6 @@
 
 
 return {
-
   -- auto format files
   'sbdchd/neoformat',
 

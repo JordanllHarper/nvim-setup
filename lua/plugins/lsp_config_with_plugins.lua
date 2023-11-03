@@ -13,16 +13,12 @@ return {
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
-
-    local servers = require('lsp.servers')
+    local servers = require('lsp.mason_servers')
     local on_attach = require('lsp.lsp-attach')
-
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
     require('mason').setup()
-
     local mason_lspconfig = require 'mason-lspconfig'
-
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
     }

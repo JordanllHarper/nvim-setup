@@ -25,6 +25,7 @@ require('lazy').setup({
 }, {})
 require('keymaps.after.keymaps')
 require('additional-config.augroups')
+require('additional-config.autoformat')
 require('additional-config.treesitter-setup')
 require('additional-config.vim-config')
 require('lsp.cmp-setup')
