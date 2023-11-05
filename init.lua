@@ -3,6 +3,7 @@
 -- Notes for me to remember
 -- <C> = Ctrl
 -- <CR> = Enter/Return
+-- <A> = Alt/Option
 require('keymaps.before.keymaps')
 -- install package manager
 --    `:help lazy.nvim.txt` for more info
@@ -30,6 +31,5 @@ require('additional-config.treesitter-setup')
 require('additional-config.vim-config')
 require('lsp.cmp-setup')
 require('lsp.sourcekit-setup')
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
