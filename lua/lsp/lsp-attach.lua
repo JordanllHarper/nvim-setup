@@ -1,5 +1,4 @@
-
-local function create_opts( desc)
+local function create_opts(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
 
@@ -12,7 +11,7 @@ return function(_, bufnr)
 
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
-	nmap('<leader>dt', vim.lsp.buf.hover, '[d]isplay [t]ype')
+	nmap('<leader>h', vim.lsp.buf.hover, 'hover')
 	nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
 
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
@@ -41,7 +40,7 @@ return function(_, bufnr)
 	-- Pin/unpin buffer
 	map('n', '<A-p>', '<Cmd>BufferPin<CR>', create_opts('buffer pin'))
 	-- Close buffer
-	map('n', '<leader>tx', '<Cmd>BufferClose<CR>', create_opts( "[t]ab cross"))
+	map('n', '<leader>tx', '<Cmd>BufferClose<CR>', create_opts("[t]ab cross"))
 	-- Wipeout buffer
 	-- Magic buffer-picking mode
 	map('n', '<leader>tt', '<Cmd>BufferPick<CR>', create_opts('Pick buffer'))
@@ -53,8 +52,6 @@ return function(_, bufnr)
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-	vim.lsp.buf.format()
+		vim.lsp.buf.format()
 	end, { desc = 'Format current buffer with LSP' })
 end
-
-
