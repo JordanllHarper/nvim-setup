@@ -21,8 +21,16 @@ return function(_, bufnr)
 	nmap('<leader>ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
 	nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+	-- Copilot bindings
+	vim.keymap.set('i', '<C-J>', 'copilot#Accept(\"<CR>\")', {
+		expr = true,
+		replace_keycodes = false
+	})
+	vim.g.copilot_no_tab_map = true
 
 	-- Lesser used LSP functionality
 	nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
@@ -49,6 +57,7 @@ return function(_, bufnr)
 	map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', create_opts('Order [b]uffer by [d]ir'))
 	map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', create_opts('Order [b]uffer by [l]anguage'))
 	map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', create_opts('Order [b]uffer by [w]indow num'))
+
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
