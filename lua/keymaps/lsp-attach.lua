@@ -49,11 +49,6 @@ return function(_, bufnr)
 	-- Wipeout buffer
 	-- Magic buffer-picking mode
 	map('n', '<leader>tt', '<Cmd>BufferPick<CR>', create_opts('Pick buffer'))
-	-- Sort automatically by...
-	map('n', '<Space>bn', '<Cmd>BufferOrderByBufferNumber<CR>', create_opts('Order [b]uffer by [n]umber'))
-	map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', create_opts('Order [b]uffer by [d]ir'))
-	map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', create_opts('Order [b]uffer by [l]anguage'))
-	map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', create_opts('Order [b]uffer by [w]indow num'))
 
 
 	-- Create a command `:Format` local to the LSP buffer
