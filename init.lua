@@ -34,6 +34,5 @@ require('additional-config.augroups')
 require('additional-config.autoformat')
 require('additional-config.treesitter-setup')
 require('additional-config.vim-config')
-require('lsp.cmp-setup')
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
