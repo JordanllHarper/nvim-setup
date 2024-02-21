@@ -21,6 +21,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  opts = {
+    defaults = {
+      lazy = true
+    },
+  },
   { import = 'plugins' },
   { import = 'themes' },
 }, {})
@@ -30,6 +35,5 @@ require('additional-config.autoformat')
 require('additional-config.treesitter-setup')
 require('additional-config.vim-config')
 require('lsp.cmp-setup')
-require('lsp.sourcekit-setup')
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
