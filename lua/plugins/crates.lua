@@ -4,9 +4,9 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts =  {
       src = {
-        cmp = {
-          enabled = true
-      }
+      --   cmp = {
+      --     enabled = true
+      -- }
     }
   }
 }
