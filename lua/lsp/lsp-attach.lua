@@ -38,7 +38,6 @@ return function(_, bufnr)
 	nmap('<leader>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, '[w]orkspace [l]ist Folders')
-	-- tabs keybindings
 
 	local map = vim.api.nvim_set_keymap
 
