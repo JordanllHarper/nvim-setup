@@ -8,7 +8,6 @@ return {
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim',                 tag = 'legacy', opts = {} },
 
-    -- Additional lua configuration, makes nvim stuff amazing!
     {
       'folke/neodev.nvim',
       opts = {}
@@ -28,7 +27,7 @@ return {
       function(server_name)
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
-          on_attach = on_attach,
+          on_attach = on_attach_keymaps,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
         }
