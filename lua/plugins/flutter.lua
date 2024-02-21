@@ -7,26 +7,36 @@ return {
   },
   config = function()
     require('flutter-tools').setup {
-      {
-        widget_guides = {
+
+      widget_guides = {
+        enabled = true,
+      },
+      dev_tools = {
+        autostart = true
+      },
+      lsp = {
+        on_attach = require('keymaps.lsp-attach'),
+        color = {
           enabled = true,
         },
-        dev_tools = {
-          autostart = true
-        },
-        lsp = {
-          color = {
-            enabled = true,
-          }
-        },
+
       },
+      decorations = {
+        statusline = {
+          project_config = true,
+          app_version = true,
+          device = true
+        }
+      }
+
 
     }
     require('flutter-tools').setup_project({
       {
         name = 'Mobile',                  -- an arbitrary name that you provide so you can recognise this config
         target = 'lib/main_preProd.dart', -- your target
-        device = 'emulator-5554',         -- the device ID, which you can get by running `flutter devices`
+        flavor = 'preProd',
+        device = 'emulator-5556',         -- the device ID, which you can get by running `flutter devices`
         dart_define = {
           API_URL = 'https://dev.example.com/api',
           IS_DEV = true,
@@ -37,7 +47,7 @@ return {
       {
         name = 'Tablet',                  -- an arbitrary name that you provide so you can recognise this config
         target = 'lib/main_preProd.dart', -- your target
-        device = 'emulator-5556',         -- the device ID, which you can get by running `flutter devices`
+        device = 'emulator-5554',         -- the device ID, which you can get by running `flutter devices`
         dart_define = {
           API_URL = 'https://dev.example.com/api',
           IS_DEV = true,
