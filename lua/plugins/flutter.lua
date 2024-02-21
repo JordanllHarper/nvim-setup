@@ -1,35 +1,20 @@
 return {
   'akinsho/flutter-tools.nvim',
-  lazy = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim', -- optional for vim.ui.select
   },
   config = function()
     require('flutter-tools').setup {
-
-      widget_guides = {
-        enabled = true,
-      },
-      dev_tools = {
-        autostart = true
-      },
       lsp = {
         on_attach = require('keymaps.lsp-attach'),
         color = {
           enabled = true,
         },
-
       },
-      decorations = {
-        statusline = {
-          project_config = true,
-          app_version = true,
-          device = true
-        }
-      }
-
-
+      widget_guides = {
+        enabled = true,
+      },
     }
     require('flutter-tools').setup_project({
       {
@@ -61,10 +46,6 @@ return {
         target = 'lib/main_preProd.dart', -- your target
         web_port = 5000
       },
-      {
-        name = 'Profile',
-        flutter_mode = 'profile', -- possible values: `debug`, `profile` or `release`, defaults to `debug`
-      }
     })
   end
 }
