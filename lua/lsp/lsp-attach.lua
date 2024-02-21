@@ -1,7 +1,6 @@
 local function create_opts(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
-
 return function(_, bufnr)
 	local telescope_builtin = require('telescope.builtin')
 	local nmap = function(keys, func, desc)
@@ -11,19 +10,24 @@ return function(_, bufnr)
 
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
-	nmap('<leader>h', vim.lsp.buf.hover, 'hover')
-	nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
+	local leaderNmap = function(keys, func, desc)
+		if desc then
+			desc = 'lsp: ' .. desc
+		end
+
+		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
+	end
+	leaderNmap('h', vim.lsp.buf.hover, 'hover')
+	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
 
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
 	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
-	nmap('<leader>D', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
-	nmap('<leader>ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-	nmap('<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
 	nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+	leaderNmap('D', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
+	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
+	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
 	-- Copilot bindings
 	vim.keymap.set('i', '<C-J>', 'copilot#Accept(\"<CR>\")', {
@@ -32,12 +36,6 @@ return function(_, bufnr)
 	})
 	vim.g.copilot_no_tab_map = true
 
-	-- Lesser used LSP functionality
-	nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
-	nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove Folder')
-	nmap('<leader>wl', function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, '[w]orkspace [l]ist Folders')
 
 	local map = vim.api.nvim_set_keymap
 
