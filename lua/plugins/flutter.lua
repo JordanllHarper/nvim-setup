@@ -1,3 +1,11 @@
+local flutter_key_bindings = function()
+  vim.keymap.set('n', '<leader>frl', require('flutter-tools.commands').reload, { desc = '[F]lutter [R]e[L]oad' })
+  vim.keymap.set('n', '<leader>frs', require('flutter-tools.commands').reload, { desc = '[F]lutter [R]e[S]tart' })
+  vim.keymap.set('n', '<leader>fs', require('flutter-tools.commands').run, { desc = '[F]lutter [S]tart (Run)' })
+  vim.keymap.set('n', '<leader>fq', require('flutter-tools.commands').quit, { desc = '[F]lutter [Q]uit' })
+  vim.keymap.set('n', '<leader>fe', ":FlutterEmulators", { desc = '[F]lutter [E]mulators' })
+  vim.keymap.set('n', '<leader>fo', require('flutter-tools.outline').toggle, { desc = '[F]lutter [O]utline' })
+end
 return {
   'akinsho/flutter-tools.nvim',
   dependencies = {
@@ -7,7 +15,7 @@ return {
   config = function()
     require('flutter-tools').setup {
       lsp = {
-        on_attach = require('keymaps.lsp-attach'),
+        on_attach = flutter_key_bindings,
         color = {
           enabled = true,
         },
