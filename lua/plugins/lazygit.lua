@@ -6,4 +6,8 @@ return {
     "nvim-lua/plenary.nvim",
   },
 
+  config = function()
+    -- Lazygit
+    vim.keymap.set('n', '<leader>lg', require('lazygit').lazygit, { desc = '[L]azy[G]it' })
+  end
 }
