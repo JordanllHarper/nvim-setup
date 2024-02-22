@@ -23,7 +23,6 @@ return function(_, bufnr)
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
 	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
-	nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
 	leaderNmap('D', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
