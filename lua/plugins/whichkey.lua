@@ -1,6 +1,5 @@
 return {
   'folke/which-key.nvim',
-  opts = {},
   config = function()
     require('which-key').register {
       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
