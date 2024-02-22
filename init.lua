@@ -5,6 +5,7 @@
 -- <CR> = Enter/Return
 -- <A> = Alt/Option
 require('keymaps.before.keymaps')
+require('additional-config.vim-config')
 -- install package manager
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -41,10 +42,8 @@ require('lazy').setup({
   { import = 'plugins' },
   { import = 'themes' },
 }, {})
-require('keymaps.after.keymaps')
 require('additional-config.augroups')
 require('additional-config.autoformat')
 require('additional-config.treesitter-setup')
-require('additional-config.vim-config')
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
