@@ -1,3 +1,10 @@
+local keybindings = function()
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+  vim.keymap.set('n', '<leader>z', '<Plug>PlenaryTestFile')
+end
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
@@ -13,7 +20,6 @@ return {
     },
   },
   config = function()
-    local on_attach_keymaps = require('keymaps.lsp-attach')
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
     require('mason').setup()
@@ -21,7 +27,7 @@ return {
       function(server_name)
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
-          on_attach = on_attach_keymaps,
+          on_attach = keybindings,
         }
       end,
     }
