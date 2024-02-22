@@ -1,8 +1,12 @@
 return {
-  'simrat39/rust-tools.nvim',
-  dependencies = {
-    'neovim/nvim-lspconfig',
-    'nvim-lua/plenary.nvim',
-    'mfussenegger/nvim-dap'
-  }
+  'mrcjkb/rustaceanvim',
+  version = '^4', -- Recommended
+  ft = { 'rust' },
+  config = function()
+    vim.g.rustaceanvim = {
+      server = {
+        on_attach = require('keymaps.lsp-attach')
+      },
+    }
+  end
 }
