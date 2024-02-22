@@ -6,10 +6,10 @@ return {
     { 'williamboman/mason.nvim', },
     { 'williamboman/mason-lspconfig.nvim', },
     -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim',                 opts = {} },
+    { 'j-hui/fidget.nvim',                 config = true },
     {
       'folke/neodev.nvim',
-      opts = {}
+      config = true
     },
   },
   config = function()

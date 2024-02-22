@@ -21,5 +21,5 @@ return {
     },
   },
 
-  dependencies = { 'nvim-tree/nvim-web-devicons', opts = true }
+  dependencies = { 'nvim-tree/nvim-web-devicons', config = true }
 }
