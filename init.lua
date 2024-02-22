@@ -22,6 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   opts = {
+    install = { colorscheme = { "tokyonight", } },
     defaults = {
       lazy = true
     },
@@ -31,6 +32,10 @@ require('lazy').setup({
     profiling = {
       loading = true,
       require = true,
+    },
+    performance = {
+      enabled = true,
+
     }
   },
   { import = 'plugins' },
