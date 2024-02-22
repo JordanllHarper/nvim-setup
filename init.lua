@@ -22,6 +22,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   opts = {
+    defaults = {
+      lazy = true
+    },
+    checker = {
+      enabled = true
+    },
+    profiling = {
+      loading = true,
+      require = true,
+    }
   },
   { import = 'plugins' },
   { import = 'themes' },
