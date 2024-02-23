@@ -19,6 +19,13 @@ return {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
+
+            ['<C-j>'] = function(prompt_bufnr)
+              require('telescope.actions').move_selection_next(prompt_bufnr)
+            end,
+            ['<C-k>'] = function(prompt_bufnr)
+              require('telescope.actions').move_selection_previous(prompt_bufnr)
+            end,
           },
         },
       }

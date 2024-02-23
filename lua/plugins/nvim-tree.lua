@@ -13,7 +13,8 @@ return {
     }
     local nvim_tree_api = require "nvim-tree.api".tree
 
-    vim.keymap.set('n', '<leader>df', nvim_tree_api.toggle, { desc = 'nvim-tree: [D]isplay [F]iles (toggle)' })
-    vim.keymap.set('n', '<leader>dt', nvim_tree_api.find_file, { desc = 'nvim-tree: [D]isplay in [T]ree (toggle)' })
+    vim.keymap.set('n', '<leader>nt', nvim_tree_api.toggle, { desc = '[N]vim-tree: [T]oggle' })
+    vim.keymap.set('n', '<leader>nff', nvim_tree_api.find_file, { desc = '[N]vim-tree: [F]ind [F]ile' })
+    vim.keymap.set('n', '<leader>nfc', nvim_tree_api.focus, { desc = '[N]vim-tree: [F]o[C]us' })
   end
 }
