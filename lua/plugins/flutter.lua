@@ -40,6 +40,7 @@ return {
       {
         name = 'Tablet',                  -- an arbitrary name that you provide so you can recognise this config
         target = 'lib/main_preProd.dart', -- your target
+        flavor = 'preProd',
         device = 'emulator-5554',         -- the device ID, which you can get by running `flutter devices`
         dart_define = {
           API_URL = 'https://dev.example.com/api',
