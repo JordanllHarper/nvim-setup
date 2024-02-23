@@ -42,6 +42,7 @@ require('lazy').setup({
   { import = 'plugins' },
   { import = 'themes' },
 }, {})
+vim.keymap.set('n', "<leader>ln", "<Cmd>:Lazy<CR>", { desc = "[L]azy [N]vim" })
 require('additional-config.augroups')
 require('additional-config.autoformat')
 -- The line beneath this is called `modeline`. See `:help modeline`
