@@ -40,15 +40,17 @@ return function(_, bufnr)
 	local map = vim.api.nvim_set_keymap
 
 	-- Move to previous/next
-	map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', { desc = "[t]ab [p]revious" })
-	map('n', '<leader>tn', '<Cmd>BufferNext<CR>', { desc = "[t]ab [n]ext" })
+	map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', { desc = "[T]ab [p]revious" })
+	map('n', '<leader>tn', '<Cmd>BufferNext<CR>', { desc = "[T]ab [N]ext" })
 	-- Pin/unpin buffer
-	map('n', '<A-p>', '<Cmd>BufferPin<CR>', create_opts('buffer pin'))
+	map('n', '<leader>tP', '<Cmd>BufferPin<CR>', create_opts('[T]ab [P]in'))
 	-- Close buffer
-	map('n', '<leader>tx', '<Cmd>BufferClose<CR>', create_opts("[t]ab cross"))
+	map('n', '<leader>tx', '<Cmd>BufferClose<CR>', create_opts("[T]ab [X]"))
 	-- Wipeout buffer
 	-- Magic buffer-picking mode
-	map('n', '<leader>tt', '<Cmd>BufferPick<CR>', create_opts('Pick buffer'))
+	map('n', '<leader>tt', '<Cmd>BufferPick<CR>', create_opts('[T]o [T]ab'))
+	-- Clear all but current buffer
+	map('n', '<leader>tc', '<Cmd>:BufferCloseAllButCurrent<CR>', create_opts('[T]abs [C]lear'))
 
 
 	-- Create a command `:Format` local to the LSP buffer
