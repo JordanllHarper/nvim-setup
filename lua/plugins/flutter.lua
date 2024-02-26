@@ -16,9 +16,9 @@ return {
 	config = function()
 		require('flutter-tools').setup {
 			lsp = {
-				on_attach = function(bufnr)
+				on_attach = function(_, bufnr)
+					require('keymaps.lsp-attach')(_, bufnr)
 					flutter_key_bindings()
-					require('keymaps.lsp-attach')(bufnr)
 				end,
 				color = {
 					enabled = true,

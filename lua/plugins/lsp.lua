@@ -21,7 +21,7 @@ return {
       function(server_name)
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
-          on_attach = require('keymaps.lsp-attach'),
+          on_attach = require('keymaps.lsp-attach')
         }
       end,
 
