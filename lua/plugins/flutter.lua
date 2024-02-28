@@ -30,7 +30,7 @@ return {
 				enabled = true,
 			},
 		}
-		local f_emu_config = require('additional-config.flutter-config')
+		local f_emu_config = require('additional-config.flutter-emulator-cfg')
 		require('flutter-tools').setup_project(f_emu_config)
 		require('telescope').load_extension("flutter")
 	end
