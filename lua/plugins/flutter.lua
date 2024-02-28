@@ -7,6 +7,7 @@ local flutter_key_bindings = function()
 	vim.keymap.set('n', '<leader>fo', require('flutter-tools.outline').toggle, { desc = '[F]lutter [O]utline' })
 	vim.keymap.set('n', '<leader>fc', require('flutter-tools.log').clear, { desc = '[F]lutter [C]lear' })
 end
+
 return {
 	'akinsho/flutter-tools.nvim',
 	dependencies = {
@@ -28,37 +29,14 @@ return {
 				enabled = true,
 			},
 		}
+		local f_config = require('additional-config.flutter-config')
 		require('flutter-tools').setup_project({
-			{
-				name = 'Mobile',      -- an arbitrary name that you provide so you can recognise this config
-				target = 'lib/main_preProd.dart', -- your target
-				flavor = 'preProd',
-				device = 'emulator-5556', -- the device ID, which you can get by running `flutter devices`
-				dart_define = {
-					API_URL = 'https://dev.example.com/api',
-					IS_DEV = true,
-				},
-				dart_define_from_file = 'config.json' -- the path to a JSON configuration file
-			},
-
-			{
-				name = 'Tablet',      -- an arbitrary name that you provide so you can recognise this config
-				target = 'lib/main_preProd.dart', -- your target
-				flavor = 'preProd',
-				device = 'emulator-5554', -- the device ID, which you can get by running `flutter devices`
-				dart_define = {
-					API_URL = 'https://dev.example.com/api',
-					IS_DEV = true,
-				},
-				dart_define_from_file = 'config.json' -- the path to a JSON configuration file
-			},
-			{
-				name = 'Web',
-				device = 'chrome',
-				flavor = 'preProd',
-				target = 'lib/main_preProd.dart', -- your target
-				web_port = 5000
-			},
+			f_config.android_main,
+			f_config.tablet_main,
+			f_config.android_preprod,
+			f_config.tablet_preprod,
+			f_config.web_preprod,
 		})
+		require('telescope').load_extension("flutter")
 	end
 }
