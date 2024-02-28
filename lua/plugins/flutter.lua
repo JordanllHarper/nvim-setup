@@ -32,5 +32,6 @@ return {
 		local f_config = require('additional-config.flutter-config')
 		require('flutter-tools').setup_project(f_config)
 		require('telescope').load_extension("flutter")
+		require('telescope').extensions.flutter.fvm()
 	end
 }
