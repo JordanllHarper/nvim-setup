@@ -6,6 +6,7 @@ local flutter_key_bindings = function()
 	vim.keymap.set('n', '<leader>fe', "<Cmd>FlutterEmulators<CR>", { desc = '[F]lutter [E]mulators' })
 	vim.keymap.set('n', '<leader>fo', require('flutter-tools.outline').toggle, { desc = '[F]lutter [O]utline' })
 	vim.keymap.set('n', '<leader>fc', require('flutter-tools.log').clear, { desc = '[F]lutter [C]lear' })
+	vim.keymap.set('n', '<leader>fv', require('telescope').extensions.flutter.fvm(), { desc = '[F]lutter [V]ersion' })
 end
 
 return {
@@ -29,9 +30,8 @@ return {
 				enabled = true,
 			},
 		}
-		local f_config = require('additional-config.flutter-config')
-		require('flutter-tools').setup_project(f_config)
+		local f_emu_config = require('additional-config.flutter-config')
+		require('flutter-tools').setup_project(f_emu_config)
 		require('telescope').load_extension("flutter")
-		require('telescope').extensions.flutter.fvm()
 	end
 }
