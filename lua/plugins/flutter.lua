@@ -30,13 +30,7 @@ return {
 			},
 		}
 		local f_config = require('additional-config.flutter-config')
-		require('flutter-tools').setup_project({
-			f_config.android_main,
-			f_config.tablet_main,
-			f_config.android_preprod,
-			f_config.tablet_preprod,
-			f_config.web_preprod,
-		})
+		require('flutter-tools').setup_project(f_config)
 		require('telescope').load_extension("flutter")
 	end
 }
