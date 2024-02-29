@@ -9,9 +9,7 @@ return {
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim',                 config = true },
     {
-      'folke/neodev.nvim',
-      config = true
-    },
+      'folke/neodev.nvim', config = true },
   },
   config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -30,13 +30,6 @@ return function(_, bufnr)
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-	-- Copilot bindings
-	vim.keymap.set('i', '<C-J>', 'copilot#Accept(\"<CR>\")', {
-		expr = true,
-		replace_keycodes = false
-	})
-	vim.g.copilot_no_tab_map = true
-
 
 	local map = vim.api.nvim_set_keymap
 

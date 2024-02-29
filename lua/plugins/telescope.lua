@@ -13,20 +13,22 @@ return {
   },
 
   config = function()
+    local default_keymaps = {
+      ['<C-u>'] = false,
+      ['<C-d>'] = false,
+
+      ['<C-j>'] = function(prompt_bufnr)
+        require('telescope.actions').move_selection_next(prompt_bufnr)
+      end,
+      ['<C-k>'] = function(prompt_bufnr)
+        require('telescope.actions').move_selection_previous(prompt_bufnr)
+      end,
+    }
     require('telescope').setup {
       defaults = {
         mappings = {
-          i = {
-            ['<C-u>'] = false,
-            ['<C-d>'] = false,
-
-            ['<C-j>'] = function(prompt_bufnr)
-              require('telescope.actions').move_selection_next(prompt_bufnr)
-            end,
-            ['<C-k>'] = function(prompt_bufnr)
-              require('telescope.actions').move_selection_previous(prompt_bufnr)
-            end,
-          },
+          n = default_keymaps,
+          i = default_keymaps,
         },
       }
     }
