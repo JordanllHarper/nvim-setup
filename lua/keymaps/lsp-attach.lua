@@ -18,8 +18,7 @@ return function(_, bufnr)
 
 		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
 	end
-	leaderNmap('hh', vim.lsp.buf.hover, '[h]over [h]elp')
-	leaderNmap('hi', vim.diagnostic.open_float, '[h]over [i]ssue')
+	leaderNmap('hh', vim.lsp.buf.hover, '[h]elp')
 	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
 
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
@@ -54,9 +53,7 @@ return function(_, bufnr)
 
 	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-	vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-	vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-	-- vim.keymap.set('n', '<leader>z', '<Plug>PlenaryTestFile')
+	vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open [E]rror float' })
 
 	vim.keymap.set({ "v", "n" }, "<A-CR>", require("actions-preview").code_actions)
 end

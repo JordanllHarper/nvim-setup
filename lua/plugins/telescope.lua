@@ -54,7 +54,15 @@ return {
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>sR', require('telescope.builtin').registers, { desc = '[S]earch [R]egisters' })
-    vim.keymap.set('n', '<leader>ss', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-      { desc = '[S]earch [S]ymbols' })
+    vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+      { desc = '[W]orkspace [S]ymbols' })
+
+    vim.keymap.set('n', '<leader>wd', require('telescope.builtin').lsp_document_symbols,
+      { desc = '[W]orkspace [D]ocument symbols' })
+
+    vim.keymap.set('n', '<leader>wd', require('telescope.builtin').diagnostics,
+      { desc = '[W]orkspace [D]iagnostics' })
+    vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,
+      { desc = '[S]earch [Q]uick Fix' })
   end
 }
