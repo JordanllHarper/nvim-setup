@@ -8,6 +8,9 @@ vim.lsp.omnifunc(1, 0)
 -- Set highlight on search
 vim.o.hlsearch = false
 
+-- Highlight cursor line
+vim.o.cursorline = true
+
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
