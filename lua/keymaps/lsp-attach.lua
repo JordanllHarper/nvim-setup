@@ -29,23 +29,6 @@ return function(_, bufnr)
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-
-	local map = vim.api.nvim_set_keymap
-
-	-- Move to previous/next
-	map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', { desc = "[T]ab [p]revious" })
-	map('n', '<leader>tn', '<Cmd>BufferNext<CR>', { desc = "[T]ab [N]ext" })
-	-- Pin/unpin buffer
-	map('n', '<leader>tP', '<Cmd>BufferPin<CR>', create_opts('[T]ab [P]in'))
-	-- Close buffer
-	map('n', '<leader>tx', '<Cmd>BufferClose<CR>', create_opts("[T]ab [X]"))
-	-- Wipeout buffer
-	-- Magic buffer-picking mode
-	map('n', '<leader>tt', '<Cmd>BufferPick<CR>', create_opts('[T]o [T]ab'))
-	-- Clear all but current buffer
-	map('n', '<leader>tc', '<Cmd>:BufferCloseAllButCurrent<CR>', create_opts('[T]abs [C]lear'))
-
-
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		vim.lsp.buf.format()
