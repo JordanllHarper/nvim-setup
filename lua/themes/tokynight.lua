@@ -1,12 +1,22 @@
 return {
 	-- Theme inspired by Atom
-
 	'folke/tokyonight.nvim',
+	config = function()
+		require('tokyonight').setup({
+			style = "storm",
+			on_highlights = function(highlights)
+				highlights.CursorLineNr = {
+					fg = "#9d7cd8",
+				}
+
+				highlights.LineNr = {
+					fg = "#41a6b5",
+				}
+			end
+		})
+
+		vim.cmd([[colorscheme tokyonight]])
+	end,
 	lazy = false,
 	priority = 1000,
-	config = function()
-		vim.cmd([[colorscheme tokyonight]])
-	end
-
-
 }

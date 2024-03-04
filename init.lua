@@ -22,26 +22,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  opts = {
-    install = { colorscheme = { "tokyonight", } },
-    defaults = {
-      lazy = true
-    },
-    checker = {
-      enabled = true
-    },
-    profiling = {
-      loading = true,
-      require = true,
-    },
-    performance = {
-      enabled = true,
-
-    }
+  colorscheme = { 'tokyonight' },
+  defaults = {
+    lazy = true
   },
+  checker = {
+    enabled = true
+  },
+  profiling = {
+    loading = true,
+    require = true,
+  },
+  performance = {
+    enabled = true,
+
+  }
+  ,
   { import = 'plugins' },
   { import = 'themes' },
-}, {})
+  {}
+})
 vim.keymap.set('n', "<leader>ln", "<Cmd>:Lazy<CR>", { desc = "[L]azy [N]vim" })
 require('additional-config.augroups')
 require('additional-config.autoformat')
