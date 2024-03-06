@@ -1,5 +1,3 @@
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- buffer commands
+vim.keymap.set('n', '<leader>bd', '<Cmd>bd<CR>', { silent = true, desc = '[B]uffer [D]elete (current)' })
+vim.keymap.set('n', '<leader>bD', '<Cmd>.,$-bdelete<CR>', { silent = true, desc = '[B]uffer [D]elete (all)' })
