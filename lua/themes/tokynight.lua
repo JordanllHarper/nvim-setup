@@ -3,7 +3,7 @@ return {
 	'folke/tokyonight.nvim',
 	config = function()
 		require('tokyonight').setup({
-			style = "storm",
+			style = "night",
 			on_highlights = function(highlights)
 				highlights.CursorLineNr = {
 					fg = "#9d7cd8",
