@@ -4,7 +4,12 @@
 -- <C> = Ctrl
 -- <CR> = Enter/Return
 -- <A> = Alt/Option
-require('keymaps.keymaps')
+--
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 require('additional-config.vim-config')
 -- install package manager
 --    `:help lazy.nvim.txt` for more info
@@ -43,6 +48,7 @@ require('lazy').setup({
   {}
 })
 vim.keymap.set('n', "<leader>ln", "<Cmd>:Lazy<CR>", { desc = "[L]azy [N]vim" })
+require('keymaps.keymaps')
 require('additional-config.augroups')
 require('additional-config.autoformat')
 -- The line beneath this is called `modeline`. See `:help modeline`
