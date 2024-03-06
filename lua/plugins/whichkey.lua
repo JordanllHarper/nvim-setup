@@ -2,6 +2,7 @@ return {
   'folke/which-key.nvim',
   config = function()
     require('which-key').register {
+      ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
       ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
       ['<leader>d'] = { name = '[D]isplay', _ = 'which_key_ignore' },
       ['<leader>nf'] = { name = '[F]...', _ = 'which_key_ignore' },
