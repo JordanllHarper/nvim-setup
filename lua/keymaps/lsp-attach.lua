@@ -18,7 +18,7 @@ return function(_, bufnr)
 
 		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
 	end
-	leaderNmap('hh', vim.lsp.buf.hover, '[h]elp')
+	leaderNmap('h', vim.lsp.buf.hover, 'Hover [H]elp')
 	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
 
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
