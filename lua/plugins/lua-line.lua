@@ -1,25 +1,27 @@
 return {
   'nvim-lualine/lualine.nvim',
-  opts = {
-    sections = {
-      lualine_x = {
-        {
-          require("lazy.status").updates,
-          cond = require("lazy.status").has_updates,
-          color = { fg = "#ff9e64" },
-        },
-      },
 
-    },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  opts = {
     options = {
       icons_enabled = true,
       theme = 'tokyonight',
-
       component_separators = { left = '', right = '' },
-
       section_separators = { left = '', right = '' },
     },
+    sections = {
+      lualine_a = {
+        {
+          'mode',
+          fmt = function(displayed_mode)
+            return displayed_mode:sub(1, 1)
+          end,
+        }
+      },
+      lualine_b = { { 'diff' } },
+      lualine_x = { { 'diagnostics' }, { 'filetype' } },
+      lualine_y = { { 'branch', }, },
+      lualine_z = { { 'location', }, { 'progress' } },
+    },
   },
-
-  dependencies = { 'nvim-tree/nvim-web-devicons' }
 }
