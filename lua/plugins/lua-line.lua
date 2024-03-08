@@ -9,6 +9,7 @@ return {
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
     },
+    extensions = { 'nvim-tree', 'mason', 'trouble', 'lazy' },
     sections = {
       lualine_a = {
         {
@@ -19,7 +20,7 @@ return {
         }
       },
       lualine_b = { { 'diff' } },
-      lualine_x = { { 'diagnostics' }, { 'filetype' } },
+      lualine_x = { { 'diagnostics' } },
       lualine_y = { { 'branch', }, },
       lualine_z = { { 'location', }, { 'progress' } },
     },
