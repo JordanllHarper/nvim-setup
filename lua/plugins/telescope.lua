@@ -60,7 +60,7 @@ return {
     vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,
       { desc = '[S]earch [Q]uick Fix' })
 
-    vim.keymap.set('n', '<leader>wd', require('telescope.builtin').lsp_document_symbols,
+    vim.keymap.set('n', '<leader>wD', require('telescope.builtin').lsp_document_symbols,
       { desc = '[W]orkspace [D]ocument symbols' })
 
     vim.keymap.set('n', '<leader>sw', require('telescope.builtin').diagnostics,
