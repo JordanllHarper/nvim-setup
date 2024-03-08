@@ -4,9 +4,11 @@ return {
   config = function()
     require('trouble').setup {
       action_keys = {
-        hover = '<leader>h'
+        hover = '<leader>h',
       }
     }
-    vim.keymap.set('n', '<leader>wd', require('trouble').toggle(), { silent = true, desc = '[W]orkspace [D]iagnostics' })
+    vim.keymap.set('n', '<leader>wd', function()
+      require('trouble').toggle()
+    end, { silent = true, desc = '[W]orkspace [D]iagnostics' })
   end,
 }
