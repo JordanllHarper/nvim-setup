@@ -10,10 +10,15 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
       changedelete = { text = '~' },
     },
     on_attach = function(bufnr)
-      vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+      local gs = package.loaded.gitsigns
+      vim.keymap.set('n', '<leader>gh', gs.preview_hunk, { buffer = bufnr, desc = '[G]it [H]unk' })
+      vim.keymap.set('n', '<leader>gs', gs.stage_hunk, { buffer = bufnr, desc = '[G]it [S]tage' })
+      vim.keymap.set('n', '<leader>gS', gs.stage_buffer,
+        { buffer = bufnr, desc = '[G]it [S]tage (Buffer)' })
+
+      vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, { buffer = bufnr, desc = '[G]it [D]iff' })
 
       -- don't override the built-in and fugitive keymaps
-      local gs = package.loaded.gitsigns
       vim.keymap.set({ 'n', 'v' }, ']c', function()
         if vim.wo.diff then
           return ']c'
