@@ -1,6 +1,6 @@
 local flutter_emulators = {
 	android_mobile = 'emulator-5554',
-	ios_mobile = '0906D77F-02C2-44D9-B82A-EE59C83E62F7',
+	ios_mobile = '9058BA54-CF35-4B08-9FE9-B7AA0C86A256',
 	android_tablet = 'emulator-5556',
 	web = {
 		device = 'chrome',
