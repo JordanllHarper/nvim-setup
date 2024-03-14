@@ -1,8 +1,20 @@
+local default_keymaps = {
+  ['<C-u>'] = false,
+  ['<C-d>'] = false,
+
+  ['<C-j>'] = function(prompt_bufnr)
+    require('telescope.actions').move_selection_next(prompt_bufnr)
+  end,
+  ['<C-k>'] = function(prompt_bufnr)
+    require('telescope.actions').move_selection_previous(prompt_bufnr)
+  end,
+}
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'jonarrien/telescope-cmdline.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -10,30 +22,30 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    keys = {
+      { ':', '<Cmd>Telescope cmdline<CR>', desc = 'Cmdline' }
+    },
+  },
+  opts = {
+    defaults = {
+      layout_strategy = 'horizontal',
+      layout_config = {
+        prompt_position = 'top',
+      },
+      mappings = {
+        n = default_keymaps,
+        i = default_keymaps,
+      },
+    },
+    extensions = {
+      cmdline = {}
+    }
   },
 
-  config = function()
-    local default_keymaps = {
-      ['<C-u>'] = false,
-      ['<C-d>'] = false,
 
-      ['<C-j>'] = function(prompt_bufnr)
-        require('telescope.actions').move_selection_next(prompt_bufnr)
-      end,
-      ['<C-k>'] = function(prompt_bufnr)
-        require('telescope.actions').move_selection_previous(prompt_bufnr)
-      end,
-    }
-    require('telescope').setup {
-      defaults = {
-        mappings = {
-          n = default_keymaps,
-          i = default_keymaps,
-        },
-      }
-    }
-    -- Enable telescope fzf native, if installed
-    pcall(require('telescope').load_extension, 'fzf')
+
+  config = function(_, opts)
+    require('telescope').setup(opts)
 
     -- telescope keymaps
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -65,5 +77,10 @@ return {
 
     vim.keymap.set('n', '<leader>sw', require('telescope.builtin').diagnostics,
       { desc = '[S]earch [W]orkspace diagnostics' })
+    -- Enable telescope fzf native, if installed
+    pcall(require('telescope').load_extension, 'fzf')
+
+    require('telescope').load_extension('cmdline')
+    vim.api.nvim_set_keymap('n', ':', '<Cmd>Telescope cmdline<CR>', { noremap = true, desc = "Cmdline" })
   end
 }
