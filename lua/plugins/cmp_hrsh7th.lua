@@ -1,6 +1,9 @@
 return {
   lazy = true,
   {
+    'hrsh7th/cmp-cmdline',
+  },
+  {
     'hrsh7th/cmp-buffer',
   },
   {
