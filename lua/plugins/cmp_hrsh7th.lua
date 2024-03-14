@@ -31,20 +31,7 @@ return {
     'hrsh7th/nvim-cmp',
 
 
-
-    -- !! Configuration !!
-    config = function()
-      local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
-      require('luasnip.loaders.from_vscode').lazy_load()
-      luasnip.config.setup {
-        setup = {
-          enable_autosnippets = true,
-        },
-
-      }
-
-      cmp.setup {
+		opts = {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -99,7 +86,21 @@ return {
           -- documentation = cmp.config.window.bordered(),
         }
 
+      },
+
+    -- !! Configuration !!
+    config = function(_, opts)
+      local cmp = require 'cmp'
+      local luasnip = require 'luasnip'
+      require('luasnip.loaders.from_vscode').lazy_load()
+      luasnip.config.setup {
+        setup = {
+          enable_autosnippets = true,
+        },
+
       }
+
+      cmp.setup(opts) 
 
 
       cmp.setup.cmdline('/', {
@@ -121,3 +122,4 @@ return {
     end,
   },
 }
+
