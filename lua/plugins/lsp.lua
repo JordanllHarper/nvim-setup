@@ -7,9 +7,10 @@ return {
     { 'williamboman/mason.nvim', },
     { 'williamboman/mason-lspconfig.nvim', },
     -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim',                 config = true },
+    { 'j-hui/fidget.nvim',                 opts = {} },
     {
-      'folke/neodev.nvim', config = true },
+      'folke/neodev.nvim', opts = {}
+    },
   },
   config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
