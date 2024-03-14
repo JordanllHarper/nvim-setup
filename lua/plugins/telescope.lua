@@ -14,7 +14,6 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'jonarrien/telescope-cmdline.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -79,8 +78,5 @@ return {
       { desc = '[S]earch [W]orkspace diagnostics' })
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
-
-    require('telescope').load_extension('cmdline')
-    vim.api.nvim_set_keymap('n', ':', '<Cmd>Telescope cmdline<CR>', { noremap = true, desc = "Cmdline" })
   end
 }
