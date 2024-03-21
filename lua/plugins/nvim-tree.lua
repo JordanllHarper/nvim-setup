@@ -9,7 +9,7 @@ return {
       filters = {
         dotfiles = false,
       },
-      disable_netrw = false
+      disable_netrw = true
     }
     local nvim_tree_api = require "nvim-tree.api".tree
 

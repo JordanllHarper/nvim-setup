@@ -1,7 +1,3 @@
-local function create_opts(desc)
-	return { noremap = true, silent = true, desc = desc }
-end
-
 return function(_, bufnr)
 	local telescope_builtin = require('telescope.builtin')
 	local nmap = function(keys, func, desc)
