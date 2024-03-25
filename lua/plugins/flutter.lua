@@ -12,7 +12,14 @@ return {
 	'akinsho/flutter-tools.nvim',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
-		'stevearc/dressing.nvim', -- optional for vim.ui.select
+		{
+			'stevearc/dressing.nvim',
+			opts = {
+				input = {
+					enabled = false
+				}
+			}
+		}, -- optional for vim.ui.select
 	},
 	config = function()
 		require('flutter-tools').setup {
