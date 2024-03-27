@@ -12,6 +12,7 @@ return {
       ['<leader>l'] = { name = '[L]azy', _ = 'which_key_ignore' },
       ['<leader>n'] = { name = '[N]vim Tree', _ = 'which_key_ignore' },
       ['<leader>fr'] = { name = '[R]e...', _ = 'which_key_ignore' },
+      ['<leader>q'] = { name = '[Q]uickfix', _ = 'which_key_ignore' },
       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
