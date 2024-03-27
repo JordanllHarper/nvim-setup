@@ -11,7 +11,6 @@ local flutter_emulators = {
 local android_main = {
 	name = 'Android Main',
 	target = 'lib/main.dart',
-	flavor = 'preProd',
 	device = flutter_emulators.android_mobile,
 	dart_define = {
 		API_URL = 'https://dev.example.com/api',
@@ -19,21 +18,10 @@ local android_main = {
 	},
 }
 
-local android_preprod = {
-	name = 'Android Preprod',
-	target = 'lib/main_preProd.dart',
-	flavor = 'preProd',
-	device = flutter_emulators.android_mobile,
-	dart_define = {
-		API_URL = 'https://dev.example.com/api',
-		IS_DEV = true,
-	},
-}
 
 local ios_main = {
 	name = 'iOS Main',
 	target = 'lib/main.dart',
-	flavor = 'preProd',
 	device = flutter_emulators.ios_mobile,
 	dart_define = {
 		API_URL = 'https://dev.example.com/api',
@@ -41,30 +29,9 @@ local ios_main = {
 	},
 }
 
-local ios_preprod = {
-	name = 'iOS Preprod',
-	target = 'lib/main_preprod.dart',
-	flavor = 'preProd',
-	device = flutter_emulators.ios_mobile,
-	dart_define = {
-		API_URL = 'https://dev.example.com/api',
-		IS_DEV = true,
-	},
-}
 local tablet_main = {
 	name = 'Tablet Main',
 	target = 'lib/main.dart',
-	flavor = 'preProd',
-	device = flutter_emulators.android_tablet,
-	dart_define = {
-		API_URL = 'https://dev.example.com/api',
-		IS_DEV = true,
-	},
-}
-local tablet_preprod = {
-	name = 'Tablet Preprod',
-	target = 'lib/main_preProd.dart',
-	flavor = 'preProd',
 	device = flutter_emulators.android_tablet,
 	dart_define = {
 		API_URL = 'https://dev.example.com/api',
@@ -72,19 +39,15 @@ local tablet_preprod = {
 	},
 }
 
-local web_preprod = {
-	name = 'Web Preprod',
+local web_main = {
+	name = 'Web Main',
 	device = flutter_emulators.web.device,
-	flavor = 'preProd',
-	target = 'lib/main_preProd.dart',
+	target = 'lib/main.dart',
 	web_port = flutter_emulators.web.port
 }
 return {
 	android_main,
-	android_preprod,
 	tablet_main,
-	tablet_preprod,
-	ios_preprod,
 	ios_main,
-	web_preprod
+	web_main
 }
