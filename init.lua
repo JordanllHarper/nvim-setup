@@ -43,13 +43,14 @@ require('lazy').setup({
 
   },
   dev = {
-    path = "~/plugin-dev"
+    path = '~/dev',
+    -- fallback = true
   },
   { import = 'plugins' },
   { import = 'themes' },
   {}
 })
-vim.keymap.set('n', "<leader>ln", "<Cmd>:Lazy<CR>", { desc = "[L]azy [N]vim" })
+vim.keymap.set('n', "<leader>ln", "<Cmd>Lazy<CR>", { desc = "[L]azy [N]vim" })
 require('keymaps.keymaps')
 require('additional-config.augroups')
 require('additional-config.autoformat')
