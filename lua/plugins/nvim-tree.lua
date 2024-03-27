@@ -1,16 +1,23 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  config = function()
-    require('nvim-tree').setup {
-      sort_by = "case_sensitive",
-      renderer = {
-        group_empty = true,
-      },
-      filters = {
-        dotfiles = false,
-      },
-      disable_netrw = true
-    }
+  opts = {
+    diagnostics = {
+      enable = true,
+      show_on_dirs = true,
+      show_on_open_dirs = true
+    },
+    hijack_cursor = true,
+    sort_by = "case_sensitive",
+    renderer = {
+      group_empty = true,
+    },
+    filters = {
+      dotfiles = false,
+    },
+    disable_netrw = true
+  },
+  config = function(_, opts)
+    require('nvim-tree').setup(opts)
     local nvim_tree_api = require "nvim-tree.api".tree
 
     vim.keymap.set('n', '<leader>nt', nvim_tree_api.toggle, { desc = '[N]vim-tree: [T]oggle' })
