@@ -4,7 +4,7 @@ return {
     diagnostics = {
       enable = true,
       show_on_dirs = true,
-      show_on_open_dirs = true
+      show_on_open_dirs = false
     },
     hijack_cursor = true,
     sort_by = "case_sensitive",
