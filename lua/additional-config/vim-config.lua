@@ -52,7 +52,7 @@ vim.o.shiftwidth = 4
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
+vim.o.exrc = true
 
 -- disable netrw at the very start
 vim.g.loaded_netrw = 1
