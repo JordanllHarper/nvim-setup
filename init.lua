@@ -40,11 +40,6 @@ require('lazy').setup({
   },
   performance = {
     enabled = true,
-
-  },
-  dev = {
-    path = '~/dev',
-    -- fallback = true
   },
   { import = 'plugins' },
   { import = 'themes' },

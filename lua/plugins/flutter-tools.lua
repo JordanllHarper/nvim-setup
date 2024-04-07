@@ -9,10 +9,7 @@ local flutter_key_bindings = function()
 end
 
 return {
-	-- 'akinsho/flutter-tools.nvim',
-	--
-	-- dev = true,
-	dir = "~/dev/flutter-tools.nvim",
+	'akinsho/flutter-tools.nvim',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{
@@ -23,6 +20,7 @@ return {
 				}
 			}
 		},
+		'rcarriga/nvim-notify',
 	},
 	opts = {
 		fvm = true,

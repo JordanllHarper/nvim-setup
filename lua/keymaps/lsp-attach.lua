@@ -1,27 +1,20 @@
 return function(_, bufnr)
 	local telescope_builtin = require('telescope.builtin')
 	local nmap = function(keys, func, desc)
-		if desc then
-			desc = 'lsp: ' .. desc
-		end
-
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
 	local leaderNmap = function(keys, func, desc)
-		if desc then
-			desc = 'lsp: ' .. desc
-		end
-
 		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
 	end
-	leaderNmap('h', vim.lsp.buf.hover, 'Hover [H]elp')
+	leaderNmap('h', vim.lsp.buf.hover)
 	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
+	leaderNmap('H', vim.lsp.buf.signature_help, 'Signature [H]elp')
 
 	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
 	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
 
-	leaderNmap('D', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
+	leaderNmap('T', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 

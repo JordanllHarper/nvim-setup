@@ -2,7 +2,8 @@ return {
   'rcarriga/nvim-notify',
   opts = {
     fps = 60,
-    timeout = 7000
+    timeout = 6000,
+    render = "compact"
   },
 
   dependencies = {
@@ -11,7 +12,7 @@ return {
 
   config = function(_, opts)
     require('notify').setup(opts)
-    require('telescope').extensions.notify.notify(opts)
+    vim.keymap.set('n', '<leader>sn', require('telescope').extensions.notify.notify)
     vim.notify = require("notify")
   end
 }
