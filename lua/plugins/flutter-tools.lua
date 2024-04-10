@@ -6,6 +6,7 @@ local flutter_key_bindings = function()
 	vim.keymap.set('n', '<leader>fe', "<Cmd>FlutterEmulators<CR>", { desc = '[F]lutter [E]mulators' })
 	vim.keymap.set('n', '<leader>fo', require('flutter-tools.outline').toggle, { desc = '[F]lutter [O]utline' })
 	vim.keymap.set('n', '<leader>fc', require('flutter-tools.log').clear, { desc = '[F]lutter [C]lear' })
+	vim.keymap.set('n', '<leader>fl', require('flutter-tools.lsp').restart, { desc = '[F]lutter [L]sp Restart' })
 end
 
 return {
