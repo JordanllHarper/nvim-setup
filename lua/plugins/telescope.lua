@@ -10,73 +10,93 @@ local default_keymaps = {
   end,
 }
 return {
-  'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
-      cond = function()
-        return vim.fn.executable 'make' == 1
-      end,
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
     },
-    keys = {
-      { ':', '<Cmd>Telescope cmdline<CR>', desc = 'Cmdline' }
-    },
-  },
-  opts = {
-    defaults = {
-      layout_strategy = 'horizontal',
-      layout_config = {
-        prompt_position = 'top',
+    opts = {
+      defaults = {
+        layout_strategy = 'horizontal',
+        layout_config = {
+          prompt_position = 'top',
+        },
+        mappings = {
+          n = default_keymaps,
+          i = default_keymaps,
+        },
       },
-      mappings = {
-        n = default_keymaps,
-        i = default_keymaps,
-      },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+        },
+      }
     },
-    extensions = {
-      cmdline = {}
-    }
+    config = function(_, opts)
+      local fb_actions = require('telescope').extensions.file_browser.actions
+      opts.extensions.file_browser = {
+        mappings = {
+          ["n"] = {
+            ['<C-a>'] = fb_actions.create_from_prompt,
+            ['<C-d>'] = fb_actions.remove,
+          },
+        }
+      }
+
+      require('telescope').setup(opts)
+      require('telescope').load_extension 'fzf'
+      require('telescope').load_extension 'file_browser'
+
+      -- telescope keymaps
+      vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+      vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>/', function()
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end, { desc = '[/] Fuzzily search in current buffer' })
+
+      vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+      vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>sR', require('telescope.builtin').registers, { desc = '[S]earch [R]egisters' })
+      vim.keymap.set('n', '<leader>sk', require('telescope.builtin').registers, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>st', require('telescope.builtin').builtin, { desc = '[S]earch [T]elescope' })
+      vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+        { desc = '[W]orkspace [S]ymbols' })
+      vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,
+        { desc = '[S]earch [Q]uick Fix' })
+
+      vim.keymap.set('n', '<leader>wD', require('telescope.builtin').lsp_document_symbols,
+        { desc = '[W]orkspace [D]ocument symbols' })
+
+      vim.keymap.set('n', '<leader>sw', require('telescope.builtin').diagnostics,
+        { desc = '[S]earch [W]orkspace diagnostics' })
+
+      vim.keymap.set('n', '<leader>sb', require('telescope').extensions.file_browser.file_browser,
+        { desc = '[S]earch [B]rowser' })
+    end,
+
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end,
+  },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
 
-
-
-  config = function(_, opts)
-    require('telescope').setup(opts)
-
-    -- telescope keymaps
-    vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-    vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to telescope to change theme, layout, etc.
-      require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
-    end, { desc = '[/] Fuzzily search in current buffer' })
-
-    vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-    vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>sR', require('telescope.builtin').registers, { desc = '[S]earch [R]egisters' })
-    vim.keymap.set('n', '<leader>sk', require('telescope.builtin').registers, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>st', require('telescope.builtin').builtin, { desc = '[S]earch [T]elescope' })
-    vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-      { desc = '[W]orkspace [S]ymbols' })
-    vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,
-      { desc = '[S]earch [Q]uick Fix' })
-
-    vim.keymap.set('n', '<leader>wD', require('telescope.builtin').lsp_document_symbols,
-      { desc = '[W]orkspace [D]ocument symbols' })
-
-    vim.keymap.set('n', '<leader>sw', require('telescope.builtin').diagnostics,
-      { desc = '[S]earch [W]orkspace diagnostics' })
-    -- Enable telescope fzf native, if installed
-    pcall(require('telescope').load_extension, 'fzf')
-  end
 }
