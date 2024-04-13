@@ -14,7 +14,7 @@ return function(_, bufnr)
 	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
 
-	leaderNmap('T', telescope_builtin.lsp_type_definitions, 'Type [D]efinition')
+	leaderNmap('T', telescope_builtin.lsp_type_definitions, '[T]ype Definition')
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
