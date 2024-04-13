@@ -79,8 +79,8 @@ return {
       vim.keymap.set('n', '<leader>wD', require('telescope.builtin').lsp_document_symbols,
         { desc = '[W]orkspace [D]ocument symbols' })
 
-      vim.keymap.set('n', '<leader>sw', require('telescope.builtin').diagnostics,
-        { desc = '[S]earch [W]orkspace diagnostics' })
+      vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
+        { desc = '[S]earch current [W]ord' })
 
       vim.keymap.set('n', '<leader>sb', require('telescope').extensions.file_browser.file_browser,
         { desc = '[S]earch [B]rowser' })
