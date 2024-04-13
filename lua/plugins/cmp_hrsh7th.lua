@@ -10,9 +10,6 @@ return {
     'hrsh7th/cmp-path',
   },
   {
-    'f3fora/cmp-spell',
-  },
-  {
 
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
@@ -86,14 +83,6 @@ return {
           { name = 'crates' },
           { name = 'nvim_lsp_signature_help' },
           { name = 'nvim_lsp_document_symbol' },
-          { name = 'spell',
-            option = {
-              keep_all_entries = false,
-              enable_in_context = function()
-                return true
-              end,
-            },
-          },
         },
       }
 
