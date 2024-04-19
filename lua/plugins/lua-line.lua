@@ -20,6 +20,13 @@ return {
         }
       },
       lualine_b = { { 'diff' } },
+      lualine_c = { {
+        'filetype',
+        icon_only = true,
+        separator = "",
+      }, {
+        'filename',
+      }, },
       lualine_x = { { 'diagnostics' } },
       lualine_y = { { 'branch', }, },
       lualine_z = { { 'location', }, { 'progress' } },
