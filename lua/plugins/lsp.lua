@@ -1,9 +1,7 @@
 return {
-
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', },
     { 'williamboman/mason-lspconfig.nvim', },
     -- Useful status updates for LSP
@@ -27,7 +25,6 @@ return {
           on_attach = require('keymaps.lsp-attach'),
         }
       end,
-
     }
   end
 }
