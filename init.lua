@@ -46,6 +46,7 @@ require('lazy').setup({
   {}
 })
 vim.keymap.set('n', "<leader>ln", "<Cmd>Lazy<CR>", { desc = "[L]azy [N]vim" })
+vim.keymap.set('n', "<leader>lr", ":Lazy reload", { desc = "[L]azy reload" })
 require('keymaps.keymaps')
 require('additional-config.augroups')
 require('additional-config.autoformat')

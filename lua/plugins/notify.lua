@@ -12,7 +12,8 @@ return {
 
   config = function(_, opts)
     require('notify').setup(opts)
-    vim.keymap.set('n', '<leader>sn', require('telescope').extensions.notify.notify)
+    vim.keymap.set('n', '<leader>sn', require('telescope').extensions.notify.notify,
+      { noremap = true, silent = true, desc = '[S]earch [N]otifications' })
     vim.notify = require("notify")
   end
 }
