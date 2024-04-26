@@ -24,6 +24,9 @@ return {
 		'rcarriga/nvim-notify',
 	},
 	opts = {
+		settings = {
+			renameFilesWithClasses = "always",
+		},
 		fvm = true,
 		lsp = {
 			on_attach = function(_, bufnr)

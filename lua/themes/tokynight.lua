@@ -14,8 +14,6 @@ return {
 				}
 			end
 		})
-
-		vim.cmd([[colorscheme tokyonight]])
 	end,
 	lazy = false,
 	priority = 1000,

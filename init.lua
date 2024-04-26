@@ -27,7 +27,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  colorscheme = { 'tokyonight' },
   defaults = {
     lazy = true
   },
@@ -45,6 +44,7 @@ require('lazy').setup({
   { import = 'themes' },
   {}
 })
+vim.cmd [[colorscheme tokyonight]]
 vim.keymap.set('n', "<leader>ln", "<Cmd>Lazy<CR>", { desc = "[L]azy [N]vim" })
 vim.keymap.set('n', "<leader>lr", ":Lazy reload", { desc = "[L]azy reload" })
 require('keymaps.keymaps')

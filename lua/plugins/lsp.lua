@@ -25,6 +25,21 @@ return {
           on_attach = require('keymaps.lsp-attach'),
         }
       end,
+      ["rust_analyzer"] = function()
+        require 'lspconfig'.rust_analyzer.setup {
+          settings     = {
+            ["rust-analyzer"] = {
+              checkOnSave = {
+                command = "clippy"
+              }
+            }
+          },
+          capabilities = capabilities,
+          on_attach    = function(client, bufnr)
+            require('keymaps.lsp-attach')(client, bufnr)
+            vim.lsp.inlay_hint.enable()
+          end }
+      end
     }
   end
 }
