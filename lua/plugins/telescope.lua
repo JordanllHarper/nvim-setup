@@ -8,6 +8,10 @@ local default_keymaps = {
   ['<C-k>'] = function(prompt_bufnr)
     require('telescope.actions').move_selection_previous(prompt_bufnr)
   end,
+
+  ['<C-b>'] = function(prompt_bufnr)
+    require('telescope.actions').delete_buffer(prompt_bufnr)
+  end,
 }
 return {
   {
@@ -67,6 +71,9 @@ return {
       vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sD',
+        function() require('telescope.builtin').diagnostics({ bufnr = vim.api.nvim_get_current_buf(), }) end
+        , { desc = '[S]earch [D]iagnostics (current buffer)' })
       vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>sR', require('telescope.builtin').registers, { desc = '[S]earch [R]egisters' })
       vim.keymap.set('n', '<leader>sk', require('telescope.builtin').registers, { desc = '[S]earch [K]eymaps' })

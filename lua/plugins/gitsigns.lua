@@ -16,6 +16,9 @@ return {
       vim.keymap.set('n', '<leader>gS', gs.stage_buffer,
         { buffer = bufnr, desc = '[G]it [S]tage (Buffer)' })
 
+      vim.keymap.set('n', '<leader>ga', "<Cmd>Git add %<CR>",
+        { buffer = bufnr, desc = '[G]it [A]dd current file' })
+
       vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, { buffer = bufnr, desc = '[G]it [D]iff' })
       vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = '[G]it [R]eset Hunk' })
       vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk,

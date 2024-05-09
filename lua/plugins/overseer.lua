@@ -10,6 +10,11 @@ return {
         ["<C-l>"] = false,
         ["<C-h>"] = false,
       }
+    },
+    actions = {
+      ["dart build"] = {
+        desc = "Build with the script copy command"
+      }
     }
   },
   config = function(_, opts)
