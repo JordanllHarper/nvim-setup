@@ -11,8 +11,6 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 require('additional-config.vim-config')
--- install package manager
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -42,7 +40,6 @@ require('lazy').setup({
   },
   { import = 'plugins' },
   { import = 'themes' },
-  {}
 })
 vim.cmd [[colorscheme tokyonight]]
 vim.keymap.set('n', "<leader>ln", "<Cmd>Lazy<CR>", { desc = "[L]azy [N]vim" })
