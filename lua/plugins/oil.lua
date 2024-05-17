@@ -1,6 +1,9 @@
 return {
   'stevearc/oil.nvim',
-  opts = {},
+  opts = {
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
+  },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function(_, opts)
     require('oil').setup(opts)

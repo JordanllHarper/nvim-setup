@@ -60,6 +60,8 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 
+vim.opt.inccommand = 'split'
+
 -- Spelling help
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }

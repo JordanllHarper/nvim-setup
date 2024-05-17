@@ -10,7 +10,6 @@ return {
     'hrsh7th/cmp-path',
   },
   {
-
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -20,14 +19,17 @@ return {
         -- install jsregexp (optional!).
         build = "make install_jsregexp"
       },
-      'saadparwaiz1/cmp_luasnip',
+      { 'saadparwaiz1/cmp_luasnip' },
 
       -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-nvim-lsp' },
 
       -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      { 'rafamadriz/friendly-snippets' },
+
+      { 'onsails/lspkind.nvim',        config = function() require('lspkind').init() end }
     },
+
     'hrsh7th/nvim-cmp',
 
 
@@ -35,6 +37,7 @@ return {
     config = function()
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       require('luasnip.loaders.from_vscode').lazy_load()
       luasnip.config.setup {
         setup = {
@@ -43,6 +46,10 @@ return {
 
       }
       cmp.setup {
+        formatting = {
+
+          format = lspkind.cmp_format(),
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -105,5 +112,5 @@ return {
           })
       })
     end,
-  },
+  }
 }

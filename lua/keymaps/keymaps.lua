@@ -1,3 +1,6 @@
+local function set(mode, lhs, rhs)
+	vim.keymap.set(mode, lhs, rhs, { silent = true })
+end
 -- Quickfix
 vim.keymap.set('n', '<leader>qo', '<Cmd>copen<CR>', { silent = true, desc = '[Q]uickfix [O]pen' })
 
@@ -10,7 +13,9 @@ vim.keymap.set('n', '<leader>Li', '<Cmd>LspInfo<CR>', { silent = true, desc = '[
 vim.keymap.set('n', '<leader>Lr', '<Cmd>LspRestart<CR>', { silent = true, desc = '[L]sp [R]estart' })
 
 -- -- Window resizing
--- vim.keymap.set('n', '<C-m>', '<Cmd>vertical resize +2<CR>', { silent = true, desc = 'Increase window height' })
--- vim.keymap.set('n', '<C-n>', '<Cmd>vertical resize -2 <CR>', { silent = true, desc = 'Decrease window height' })
--- vim.keymap.set('n', '<C-b>', '<Cmd>horizontal resize +2<CR>', { silent = true, desc = 'Increase window width' })
--- vim.keymap.set('n', '<C-s>', '<Cmd>horizontal resize -2<CR>', { silent = true, desc = 'Decrease window width' })
+
+local window_binding = '<C-w>'
+set('n', '<M-.>', window_binding .. '5< ')
+set('n', '<M-,>', window_binding .. '5>')
+set('n', '<M-t>', window_binding .. '+')
+set('n', '<M-s>', window_binding .. '-')
