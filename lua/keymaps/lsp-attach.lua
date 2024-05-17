@@ -2,13 +2,18 @@ return function(_, bufnr)
 	local nmap = function(keys, func, desc)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
+
+	local imap = function(keys, func, desc)
+		vim.keymap.set('i', keys, func, { buffer = bufnr, desc = desc })
+	end
 	local leaderNmap = function(keys, func, desc)
 		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
 	end
 
+
 	leaderNmap('h', vim.lsp.buf.hover, '[H]over')
 	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
-	leaderNmap('H', vim.lsp.buf.signature_help, 'Signature [H]elp')
+	imap('<C-i>', vim.lsp.buf.signature_help, 'Signature [H]elp')
 
 	nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
 	nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
