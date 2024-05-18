@@ -28,6 +28,16 @@ return {
           on_attach = require('keymaps.lsp-attach'),
         }
       end,
+      ["clangd"] = function()
+        require 'lspconfig'.clangd.setup {
+          on_attach = require("keymaps.lsp-attach"),
+          capabilities = capabilities,
+          cmd = {
+            "clangd",
+            "--offset-encoding=utf-16"
+          }
+        }
+      end,
       ["rust_analyzer"] = function()
         require 'lspconfig'.rust_analyzer.setup {
           settings     = {

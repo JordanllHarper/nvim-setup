@@ -1,7 +1,7 @@
 return {
   'stevearc/overseer.nvim',
   opts = {
-    templates = { 'builtin', "user.dart_build", "user.dart_test" },
+    templates = { 'builtin', "user.dart_build", "user.dart_test", "user.c_run" },
     task_list = {
       bindings = {
         -- disable so we can use C-j/k to navigate
@@ -14,6 +14,9 @@ return {
     actions = {
       ["dart build"] = {
         desc = "Build with the script copy command"
+      },
+      ["c run"] = {
+        desc = "Build and run the c program"
       }
     }
   },
