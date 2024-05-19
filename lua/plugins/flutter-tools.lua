@@ -23,28 +23,7 @@ return {
 		},
 		'rcarriga/nvim-notify',
 	},
-	opts = {
-		settings = {
-			renameFilesWithClasses = "always",
-		},
-		fvm = true,
-		lsp = {
-			on_attach = function(_, bufnr)
-				require('keymaps.lsp-attach')(_, bufnr)
-				flutter_key_bindings()
-			end,
-			color = {
-				enabled = true,
-			},
-		},
-		widget_guides = {
-			enabled = true,
-		},
-	},
-	config = function(_, opts)
-		require('flutter-tools').setup(opts)
-		-- local f_emu_config = require('additional-config.flutter-emulator-cfg')
-		-- require('flutter-tools').setup_project(f_emu_config)
-		require('telescope').load_extension("flutter")
+	config = function()
+		require 'plugins.config.flutter-tools'
 	end
 }
