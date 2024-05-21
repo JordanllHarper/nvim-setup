@@ -10,14 +10,53 @@ local fmta = require "luasnip.extras.fmt".fmta
 
 ls.add_snippets("dart", {
 	s("sca", fmt("return Scaffold(body: {});", { i(1) })),
-	--
-	s("cubit", fmta([[
-class (name)Cubit extends Cubit<(state)>{
+	--[[
 
-	(finish)
 
-}]], { name = i(1), state = i(2), finish = i(0) }, { delimiters = "()" })),
-	--
+		Cubit creation
+
+
+	--]]
+	s("cubit",
+		fmt([[
+	class {name}Cubit extends Cubit<{state}>{{
+
+		{name}Cubit : super({args});
+		{}
+
+	}}]],
+			{ name = i(1), state = i(2), args = i(3), i(0) },
+			{ repeat_duplicates = true })),
+	--[[
+	
+
+		Creating State
+
+
+	--]]
+	s("state", fmt([[
+	  @freezed
+	  class {stateName}State with _${stateName}State {{
+		  const factory {stateName}State{factoryStep} = {stateName}State{factoryStepUpper};{}
+	  }}
+      ]], {
+		stateName = i(1, "StateName"), factoryStep = i(2), factoryStepUpper = i(3), i(0),
+	}, {
+		repeat_duplicates = true
+	})),
+
+	s("stavar", fmt([[
+	const factory {stateName}.{variant}({{ {args} }})= {stateName}{variantUpper};{}
+]], {
+		stateName = i(1), variant = i(2), args = i(3), variantUpper = i(4), i(0),
+	}, { repeat_duplicates = true })),
+	--[[
+
+
+		Creating Variables
+
+
+	--]]
 	s({ trig = "fv", desc = "Create a final value" }, fmt("final {} = {};{}", { i(1), i(2), i(0) })),
 	--
 	s({ trig = "ff", desc = "Create a final field" }, fmt("final {} {};{}", { i(1), i(2), i(0) })),
@@ -26,19 +65,12 @@ class (name)Cubit extends Cubit<(state)>{
 	--
 	s({ trig = "vf", desc = "Create a variable field" }, fmt("{} {};{}", { i(1), i(2), i(0) })),
 	--
-	s("slw", fmta([[
-class (name) extends StatelessWidget {
-
-		(finish)
-
-}
-]], { name = i(1), finish = i(2) }, { delimiters = "()" })),
 	--
-	s("sfw", fmta([[
-class (name) extends StatefulWidget {
-
-	(finish)
-
-}
-]], { name = i(1), finish = i(2) }, { delimiters = "()" })),
+	-- 	s("sfw", fmta([[
+	-- class (name) extends StatefulWidget {
+	--
+	-- 	(finish)
+	--
+	-- }
+	-- ]], { name = i(1), finish = i(2) }, { delimiters = "()" })),
 })

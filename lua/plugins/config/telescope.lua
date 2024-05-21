@@ -68,6 +68,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
 vim.keymap.set('n', '<leader>sb', require('telescope').extensions.file_browser.file_browser,
   { desc = '[S]earch [B]rowser' })
 
+
 vim.keymap.set('n', '<leader>C', function()
     require('telescope').extensions.file_browser.file_browser { path = "~/.config/nvim" }
   end,
