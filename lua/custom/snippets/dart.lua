@@ -16,5 +16,6 @@ class (name)Cubit extends Cubit<(state)>{
 	(finish)
 
 }
-]], { name = i(1), state = i(2), finish = i(0) }, { delimiters = "()" }))
+]], { name = i(1), state = i(2), finish = i(0) }, { delimiters = "()" })),
+	s("fv", fmt("final {} = {};{}", { i(1), i(2), i(0) })),
 })
