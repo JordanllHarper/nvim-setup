@@ -1,4 +1,4 @@
-require('luasnip.session.snippet_collection').clear_snippets "dart"
+require('luasnip.session.snippet_collection').clear_snippets "lua"
 local ls = require "luasnip"
 
 local s = ls.snippet
