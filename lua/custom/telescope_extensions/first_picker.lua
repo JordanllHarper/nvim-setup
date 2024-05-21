@@ -22,8 +22,6 @@ local colors = function(opts)
 		attach_mappings = function(prompt_bufnr, map)
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
-				local selection = action_state.get_selected_entry()
-				vim.api.nvim_put({ selection[1] }, "", false, true)
 			end)
 			return true
 		end,

@@ -1,8 +1,3 @@
-local default_keymaps = {
-  ['<C-b>'] = function(prompt_bufnr)
-    require('telescope.actions').delete_buffer(prompt_bufnr)
-  end,
-}
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -10,27 +5,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    opts = {
-      defaults = {
-        layout_strategy = 'horizontal',
-        layout_config = {
-          prompt_position = 'top',
-        },
-        mappings = {
-          n = default_keymaps,
-          i = default_keymaps,
-        },
-      },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = 'smart_case',
-        },
-      }
-    },
-    config = function(_, opts)
+    config = function()
       require 'plugins.config.telescope'
     end,
 

@@ -50,10 +50,13 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>sF', function() require('telescope.builtin').find_files { hidden = true, } end,
   { desc = '[S]earch All [F]iles (including hidden)' })
-vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files() end,
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files,
   { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sH', require('telescope.builtin').search_history, { desc = '[S]earch [H]istory' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sG', require('telescope.builtin').git_bcommits, { desc = '[S]earch [G]it commits' })
+vim.keymap.set('n', '<leader>ss', require('telescope.builtin').git_status, { desc = '[S]earch [S]tatus' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>sR', require('telescope.builtin').registers, { desc = '[S]earch [R]egisters' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
@@ -64,3 +67,8 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
   { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sb', require('telescope').extensions.file_browser.file_browser,
   { desc = '[S]earch [B]rowser' })
+
+vim.keymap.set('n', '<leader>C', function()
+    require('telescope').extensions.file_browser.file_browser { path = "~/.config/nvim" }
+  end,
+  { desc = '[S]earch  [C]onfiguration' })
