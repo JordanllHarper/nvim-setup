@@ -34,6 +34,7 @@ local keymap = s("keymap", fmt("vim.keymap.set(\"{}\", \"{}\", {}, {})", {
 	i(3),
 	i(4),
 }))
+
 local lv = s("lv", fmt("local {} = {}", {
 	i(1),
 	i(0),

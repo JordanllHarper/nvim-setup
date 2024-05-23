@@ -39,10 +39,11 @@ return function(_, bufnr)
 	leaderNmap('T', telescope_builtin.lsp_type_definitions, '[T]ype Definition')
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-	leaderNmap('sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
 
-	leaderNmap('sD', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
+	leaderNmap('sd', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
 		'[S]earch [D]iagnostics (current buffer)')
+
+	leaderNmap('sD', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
 
 	leaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
 		'[W]orkspace [S]ymbols')

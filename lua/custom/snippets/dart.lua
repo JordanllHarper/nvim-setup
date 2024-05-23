@@ -13,6 +13,31 @@ ls.add_snippets("dart", {
 	--[[
 
 
+		Freezed model creation
+
+
+	--]]
+	s("freezed", fmt([[
+	  @freezed
+	  class {modelName} with _${modelName}{{
+		  {} factory {modelName}( {{ {args} }} ) = _{modelName};{}
+	  }}
+      ]], {
+		modelName = i(1, "ModelName"), i(2), args = i(3), i(0),
+	}, {
+		repeat_duplicates = true
+	})),
+
+	s("factory", fmt([[
+	{} factory.{factoryName}({{ {args} }}){{
+		{}
+	}}
+]], {
+		i(1), factoryName = i(2), args = i(3), i(0),
+	}, { repeat_duplicates = true })),
+	--[[
+
+
 		Cubit creation
 
 
