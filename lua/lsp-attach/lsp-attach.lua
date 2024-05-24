@@ -1,5 +1,4 @@
-return function(_, bufnr, force_auto_format)
-	force_auto_format = force_auto_format or false
+return function(bufnr)
 	local nmap = function(keys, func, desc)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
@@ -25,27 +24,25 @@ return function(_, bufnr, force_auto_format)
 
 	vim.keymap.set('i', "<C-n>", "<C-x><C-o>")
 
-	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-		vim.lsp.buf.format()
-	end, { desc = 'Format current buffer with LSP' })
+	nmap('F', vim.lsp.buf.format, '[F]ormat buffer')
+	nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+	nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
 
-
-	require('additional-config.autoformat')(force_auto_format)
 	-- telescope lsp keymaps
 
 	local telescope_builtin = require('telescope.builtin')
-	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
-	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
 
 	leaderNmap('T', telescope_builtin.lsp_type_definitions, '[T]ype Definition')
 	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	leaderNmap('sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
+	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
+	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
 
-	leaderNmap('sd', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
+
+	leaderNmap('sD', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
 		'[S]earch [D]iagnostics (current buffer)')
-
-	leaderNmap('sD', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
 
 	leaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
 		'[W]orkspace [S]ymbols')

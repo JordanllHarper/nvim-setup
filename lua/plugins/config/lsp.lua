@@ -1,3 +1,4 @@
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 vim.diagnostic.config({
   virtual_text = {
     severity = vim.diagnostic.severity.L
@@ -8,16 +9,14 @@ require('mason').setup()
 require('mason-lspconfig').setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
-      capabilities = require 'lsp.capabilities',
-      on_attach = function(_, bufnr)
-        require('lsp.on-attach')(_, bufnr)
-      end,
+      capabilities = capabilities,
+      on_attach = require('keymaps.lsp-attach'),
     }
   end,
   ["lua_ls"] = function()
     require 'lspconfig'.lua_ls.setup {
-          on_attach = require('lsp.on-attach'),
-      capabilities = require 'lsp.capabilities',
+      on_attach = require('keymaps.lsp-attach'),
+      capabilities = capabilities,
       on_init = function(client)
         local path = client.workspace_folders[1].name
         if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
@@ -44,8 +43,8 @@ require('mason-lspconfig').setup_handlers {
   end,
   ["clangd"] = function()
     require 'lspconfig'.clangd.setup {
-      on_attach = require("lsp.on-attach"),
-      capabilities = require 'lsp.capabilities',
+      on_attach = require("keymaps.lsp-attach"),
+      capabilities = capabilities,
       cmd = {
         "clangd",
         "--offset-encoding=utf-16"
@@ -61,9 +60,9 @@ require('mason-lspconfig').setup_handlers {
           }
         }
       },
-      capabilities = require 'lsp.capabilities',
+      capabilities = capabilities,
       on_attach    = function(client, bufnr)
-        require('lsp.on-attach')(client, bufnr)
+        require('keymaps.lsp-attach')(client, bufnr)
         vim.lsp.inlay_hint.enable()
       end }
   end
