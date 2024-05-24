@@ -12,7 +12,10 @@ vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { silent = true, desc = '[Q]uit term
 vim.keymap.set('n', '<leader>Li', '<Cmd>LspInfo<CR>', { silent = true, desc = '[L]sp [I]nfo' })
 vim.keymap.set('n', '<leader>Lr', '<Cmd>LspRestart<CR>', { silent = true, desc = '[L]sp [R]estart' })
 
-vim.keymap.set("n", "<leader>S", '<Cmd>luafile %<CR>', { desc = "[S]ource" })
+vim.keymap.set("n", "<leader>S", function()
+	vim.cmd('luafile %')
+	vim.notify("Resourcing current luafile ", vim.log.levels.INFO)
+end, { desc = "[S]ource" })
 -- -- Window resizing
 
 local window_binding = '<C-w>'
