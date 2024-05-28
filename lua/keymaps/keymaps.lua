@@ -25,6 +25,7 @@ map('n', '<M-t>', window_binding .. '+', 'Taller pane')
 map('n', '<M-s>', window_binding .. '-', 'Shorter pane')
 
 -- Tabs
-
 map('n', '<leader>u', "<Cmd>tabprevious<CR>", "Previous tab")
 map('n', '<leader>p', "<Cmd>tabnext<CR>", "Next tab")
+map('n', '<leader>N', "<Cmd>tabnew<CR>", "New tab")
+map('n', '<leader>x', "<Cmd>tabclose<CR>", "Close tab")
