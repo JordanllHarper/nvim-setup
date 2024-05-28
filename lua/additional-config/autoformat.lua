@@ -22,6 +22,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(client_id)
     local bufnr = args.buf
 
+    if not client then
+      return
+    end
+
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = get_augroup(client),
       buffer = bufnr,

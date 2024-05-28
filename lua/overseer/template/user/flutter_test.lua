@@ -1,9 +1,8 @@
 return {
-  name = "dart test",
+  name = "flutter test",
   builder = function()
     return {
       cmd = { "fvm", "flutter", "test" },
-      -- args = { "--update-goldens" }
     }
   end,
   condition = {

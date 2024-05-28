@@ -1,16 +1,16 @@
-local function set(mode, lhs, rhs)
-	vim.keymap.set(mode, lhs, rhs, { silent = true })
+local function map(mode, lhs, rhs, desc)
+	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
 end
 -- Quickfix
-vim.keymap.set('n', '<leader>qo', '<Cmd>copen<CR>', { silent = true, desc = '[Q]uickfix [O]pen' })
+map('n', '<leader>qo', '<Cmd>copen<CR>', '[Q]uickfix [O]pen')
 
 -- Terminal
-vim.keymap.set('n', '<leader>t', '<Cmd>term<CR>', { silent = true, desc = '[T]erminal' })
-vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { silent = true, desc = '[Q]uit terminal mode' })
+map('n', '<leader>t', '<Cmd>term<CR>', '[T]erminal')
+map('t', '<C-q>', '<C-\\><C-n>', '[Q]uit terminal mode')
 
 -- Lsp
-vim.keymap.set('n', '<leader>Li', '<Cmd>LspInfo<CR>', { silent = true, desc = '[L]sp [I]nfo' })
-vim.keymap.set('n', '<leader>Lr', '<Cmd>LspRestart<CR>', { silent = true, desc = '[L]sp [R]estart' })
+map('n', '<leader>Li', '<Cmd>LspInfo<CR>', '[L]sp [I]nfo')
+map('n', '<leader>Lr', '<Cmd>LspRestart<CR>', '[L]sp [R]estart')
 
 vim.keymap.set("n", "<leader>S", function()
 	vim.cmd('luafile %')
@@ -19,7 +19,12 @@ end, { desc = "[S]ource" })
 -- -- Window resizing
 
 local window_binding = '<C-w>'
-set('n', '<M-.>', window_binding .. '5< ')
-set('n', '<M-,>', window_binding .. '5>')
-set('n', '<M-t>', window_binding .. '+')
-set('n', '<M-s>', window_binding .. '-')
+map('n', '<M-.>', window_binding .. '5< ', 'Shrink pane')
+map('n', '<M-,>', window_binding .. '5>', 'Widen pane')
+map('n', '<M-t>', window_binding .. '+', 'Taller pane')
+map('n', '<M-s>', window_binding .. '-', 'Shorter pane')
+
+-- Tabs
+
+map('n', '<leader>u', "<Cmd>tabprevious<CR>", "Previous tab")
+map('n', '<leader>p', "<Cmd>tabnext<CR>", "Next tab")

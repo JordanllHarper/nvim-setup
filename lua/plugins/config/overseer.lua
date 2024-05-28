@@ -1,5 +1,5 @@
 local opts = {
-  templates = { 'builtin', "user.dart_build", "user.dart_test", "user.c_run" },
+  templates = { 'builtin', "user.dart_build", "user.flutter_test", "user.c_run" },
   task_list = {
     bindings = {
       -- disable so we can use C-j/k to navigate
