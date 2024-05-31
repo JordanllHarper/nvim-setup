@@ -57,4 +57,3 @@
   "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" },
   "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" },
   "zoxide.vim": { "branch": "master", "commit": "b1e70b6fc1682a83929aee63680d2b43456fe9a5" }
-}

@@ -17,6 +17,8 @@ return function(_, bufnr)
 
 	nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
 	nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
+	nmap(']q', "<Cmd>cnext<CR>", 'Next quickfix')
+	nmap('[q', "<Cmd>cprev<CR>", 'Previous quickfix')
 
 	leaderNmap('e', vim.diagnostic.open_float, 'Open [E]rror float')
 
