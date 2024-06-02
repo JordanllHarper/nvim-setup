@@ -47,6 +47,4 @@ return function(_, bufnr)
 
 	leaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
 		'[W]orkspace [S]ymbols')
-	leaderNmap('wD', require('telescope.builtin').lsp_document_symbols,
-		'[W]orkspace [D]ocument symbols')
 end
