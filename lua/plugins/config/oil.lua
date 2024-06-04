@@ -1,3 +1,4 @@
+local nmap = require('utils').nmap
 local opts = {
   -- Disable so we can move
   ["<C-h>"] = false,
@@ -6,4 +7,4 @@ local opts = {
   ["<C-k>"] = false,
 }
 require('oil').setup(opts)
-vim.keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "[-] Oil" })
+nmap("-", "<Cmd>Oil<CR>", "[-] Oil")

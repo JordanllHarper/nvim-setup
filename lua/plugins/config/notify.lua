@@ -5,6 +5,7 @@ local opts = {
 }
 require 'notify'.setup(opts)
 
-vim.keymap.set('n', '<leader>sn', require('telescope').extensions.notify.notify,
-  { noremap = true, silent = true, desc = '[S]earch [N]otifications' })
+local leaderNmap = require 'utils'.leaderNmap
+leaderNmap('sn', require('telescope').extensions.notify.notify,
+  '[S]earch [N]otifications')
 vim.notify = require("notify")

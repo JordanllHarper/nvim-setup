@@ -4,8 +4,12 @@
 -- <C> = Ctrl
 -- <CR> = Enter/Return
 -- <A> = Alt/Option
---
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+local map = require 'utils'.map
+local nmap = require 'utils'.nmap
+local leaderNmap = require 'utils'.leaderNmap
+
+map({ 'n', 'v' }, '<Space>', '<Nop>')
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -42,8 +46,8 @@ require('lazy').setup({
   { import = 'themes' },
 })
 vim.cmd [[colorscheme tokyonight]]
-vim.keymap.set('n', "<leader>ln", "<Cmd>Lazy<CR>", { desc = "[L]azy [N]vim" })
-vim.keymap.set('n', "<leader>lr", ":Lazy reload", { desc = "[L]azy reload" })
+leaderNmap("ln", "<Cmd>Lazy<CR>", "[L]azy [N]vim")
+leaderNmap("lr", ":Lazy reload", "[L]azy reload")
 require('keymaps.keymaps')
 require('additional-config.augroups')
 require('additional-config.autoformat')

@@ -8,6 +8,6 @@ return {
 
   config = function()
     -- Lazygit
-    vim.keymap.set('n', '<leader>lg', require('lazygit').lazygit, { desc = '[L]azy[G]it' })
+    require 'utils'.leaderNmap('lg', require('lazygit').lazygit, '[L]azy[G]it')
   end
 }

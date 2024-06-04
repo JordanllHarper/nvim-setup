@@ -1,52 +1,56 @@
+local map = require 'utils'.map
+local imap = require 'utils'.imap
+local cmd = require 'utils'.custom_user_command
 return function(_, bufnr)
-	local nmap = function(keys, func, desc)
+	-- TODO: Formatnd
+	local bufnmap = function(keys, func, desc)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	local imap = function(keys, func, desc)
+	local bufimap = function(keys, func, desc)
 		vim.keymap.set('i', keys, func, { buffer = bufnr, desc = desc })
 	end
-	local leaderNmap = function(keys, func, desc)
+
+	local bufleaderNmap = function(keys, func, desc)
 		vim.keymap.set('n', '<leader>' .. keys, func, { buffer = bufnr, desc = desc })
 	end
 
+	bufleaderNmap('h', vim.lsp.buf.hover, '[H]over')
+	bufleaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
+	bufimap('<C-i>', vim.lsp.buf.signature_help, 'Signature [H]elp')
 
-	leaderNmap('h', vim.lsp.buf.hover, '[H]over')
-	leaderNmap('rn', vim.lsp.buf.rename, '[R]e[N]ame')
-	imap('<C-i>', vim.lsp.buf.signature_help, 'Signature [H]elp')
+	bufnmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
+	bufnmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
+	bufnmap(']q', "<Cmd>cnext<CR>", 'Next quickfix')
+	bufnmap('[q', "<Cmd>cprev<CR>", 'Previous quickfix')
 
-	nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
-	nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
-	nmap(']q', "<Cmd>cnext<CR>", 'Next quickfix')
-	nmap('[q', "<Cmd>cprev<CR>", 'Previous quickfix')
+	bufleaderNmap('e', vim.diagnostic.open_float, 'Open [E]rror float')
 
-	leaderNmap('e', vim.diagnostic.open_float, 'Open [E]rror float')
+	map({ "v", "n" }, "<A-CR>", require("actions-preview").code_actions)
 
-	vim.keymap.set({ "v", "n" }, "<A-CR>", require("actions-preview").code_actions)
+	imap("<C-n>", "<C-x><C-o>")
 
-	vim.keymap.set('i', "<C-n>", "<C-x><C-o>")
-
-	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+	cmd(bufnr, 'Format', function(_)
 		vim.lsp.buf.format()
-	end, { desc = 'Format current buffer with LSP' })
+	end, 'Format current buffer with LSP')
 
 
 	-- telescope lsp keymaps
 
-	local telescope_builtin = require('telescope.builtin')
-	nmap('gd', telescope_builtin.lsp_definitions, '[G]oto [D]efinition')
-	nmap('gr', telescope_builtin.lsp_references, '[G]oto [R]eferences')
-	nmap('gI', telescope_builtin.lsp_implementations, '[G]oto [I]mplementation')
+	local ts = require('telescope.builtin')
+	bufnmap('gd', ts.lsp_definitions, '[G]oto [D]efinition')
+	bufnmap('gr', ts.lsp_references, '[G]oto [R]eferences')
+	bufnmap('gI', ts.lsp_implementations, '[G]oto [I]mplementation')
 
-	leaderNmap('T', telescope_builtin.lsp_type_definitions, '[T]ype Definition')
-	leaderNmap('ds', telescope_builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-	leaderNmap('ws', telescope_builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	bufleaderNmap('T', ts.lsp_type_definitions, '[T]ype Definition')
+	bufleaderNmap('ds', ts.lsp_document_symbols, '[D]ocument [S]ymbols')
+	bufleaderNmap('ws', ts.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-	leaderNmap('sd', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
+	bufleaderNmap('sd', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
 		'[S]earch [D]iagnostics (current buffer)')
 
-	leaderNmap('sD', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
+	bufleaderNmap('sD', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
 
-	leaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+	bufleaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
 		'[W]orkspace [S]ymbols')
 end
