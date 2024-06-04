@@ -2,7 +2,7 @@ local map = require 'utils'.map
 local imap = require 'utils'.imap
 local cmd = require 'utils'.custom_user_command
 return function(_, bufnr)
-	-- TODO: Formatnd
+	-- TODO: Find a way to make more general
 	local bufnmap = function(keys, func, desc)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
