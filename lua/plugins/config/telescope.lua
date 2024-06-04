@@ -39,38 +39,42 @@ require('telescope').load_extension 'file_browser'
 
 -- telescope keymaps
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
+
+local nmap = require 'utils'.nmap
+local leaderNmap = require 'utils'.leaderNmap
+
+leaderNmap('?', builtin.oldfiles, '[?] Find recently opened files')
+leaderNmap('<leader>', builtin.buffers, '[ ] Find existing buffers')
+leaderNmap('/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, '[/] Fuzzily search in current buffer')
 
-vim.keymap.set('n', '<leader>sF', function() require('telescope.builtin').find_files { hidden = true, } end,
-  { desc = '[S]earch All [F]iles (including hidden)' })
-vim.keymap.set('n', '<leader>sf', builtin.find_files,
-  { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sH', builtin.search_history, { desc = '[S]earch [H]istory' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', builtin.git_bcommits, { desc = '[S]earch [G]it commits' })
-vim.keymap.set('n', '<leader>ss', builtin.git_status, { desc = '[S]earch [S]tatus' })
-vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-vim.keymap.set('n', '<leader>sR', builtin.registers, { desc = '[S]earch [R]egisters' })
-vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = '[S]earch [T]elescope' })
-vim.keymap.set('n', '<leader>sq', builtin.quickfix,
-  { desc = '[S]earch [Q]uick Fix' })
-vim.keymap.set('n', '<leader>sw', builtin.grep_string,
-  { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sb', require('telescope').extensions.file_browser.file_browser,
-  { desc = '[S]earch [B]rowser' })
+leaderNmap('sF', function() require('telescope.builtin').find_files { hidden = true, } end,
+  '[S]earch All [F]iles (including hidden)')
+leaderNmap('sf', builtin.find_files,
+  '[S]earch [F]iles')
+leaderNmap('sh', builtin.help_tags, '[S]earch [H]elp')
+leaderNmap('sH', builtin.search_history, '[S]earch [H]istory')
+leaderNmap('sg', builtin.live_grep, '[S]earch by [G]rep')
+leaderNmap('sG', builtin.git_bcommits, '[S]earch [G]it commits')
+leaderNmap('ss', builtin.git_status, '[S]earch [S]tatus')
+leaderNmap('sr', builtin.resume, '[S]earch [R]esume')
+leaderNmap('sR', builtin.registers, '[S]earch [R]egisters')
+leaderNmap('sk', builtin.keymaps, '[S]earch [K]eymaps')
+leaderNmap('st', builtin.builtin, '[S]earch [T]elescope')
+leaderNmap('sq', builtin.quickfix,
+  '[S]earch [Q]uick Fix')
+leaderNmap('sw', builtin.grep_string,
+  '[S]earch current [W]ord')
+leaderNmap('sb', require('telescope').extensions.file_browser.file_browser,
+  '[S]earch [B]rowser')
 
 
-vim.keymap.set('n', '<leader>C', function()
+leaderNmap('C', function()
     builtin.find_files { cwd = "~/.config/nvim/lua" }
   end,
-  { desc = '[S]earch  [C]onfiguration' })
+  '[S]earch  [C]onfiguration')
