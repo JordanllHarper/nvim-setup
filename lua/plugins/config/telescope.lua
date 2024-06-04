@@ -40,7 +40,6 @@ require('telescope').load_extension 'file_browser'
 -- telescope keymaps
 local builtin = require('telescope.builtin')
 
-local nmap = require 'utils'.nmap
 local leaderNmap = require 'utils'.leaderNmap
 
 leaderNmap('?', builtin.oldfiles, '[?] Find recently opened files')

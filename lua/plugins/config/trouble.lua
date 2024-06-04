@@ -6,4 +6,12 @@ local opts = {
 }
 require 'trouble'.setup(opts)
 
-leaderNmap('wd', require('trouble').toggle, '[W]orkspace [D]iagnostics')
+leaderNmap('wd', function()
+    require('trouble').toggle("diagnostics")
+  end,
+  '[W]orkspace [D]iagnostics')
+
+leaderNmap('ws', function()
+    require('trouble').toggle("symbols")
+  end,
+  '[W]orkspace [S]ymbols')

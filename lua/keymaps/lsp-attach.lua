@@ -44,13 +44,10 @@ return function(_, bufnr)
 
 	bufleaderNmap('T', ts.lsp_type_definitions, '[T]ype Definition')
 	bufleaderNmap('ds', ts.lsp_document_symbols, '[D]ocument [S]ymbols')
-	bufleaderNmap('ws', ts.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	bufleaderNmap('Ws', ts.lsp_dynamic_workspace_symbols, 'Search [W]orkspace [S]ymbols')
 
 	bufleaderNmap('sd', function() require('telescope.builtin').diagnostics { bufnr = 0 } end,
 		'[S]earch [D]iagnostics (current buffer)')
 
 	bufleaderNmap('sD', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
-
-	bufleaderNmap('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-		'[W]orkspace [S]ymbols')
 end
