@@ -1,3 +1,4 @@
+local leaderNmap = require 'utils'.leaderNmap
 local opts = {
   action_keys = {
     hover = '<leader>h',
@@ -5,4 +6,4 @@ local opts = {
 }
 require 'trouble'.setup(opts)
 
-vim.keymap.set('n', '<leader>wd', require('trouble').toggle, { silent = true, desc = '[W]orkspace [D]iagnostics' })
+leaderNmap('wd', require('trouble').toggle, '[W]orkspace [D]iagnostics')

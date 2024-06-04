@@ -1,2 +1,3 @@
-vim.keymap.set('n', '<leader>gc', '<Cmd>Git commit<CR>', { desc = '[G]it [C]ommit' })
-vim.keymap.set('n', '<leader>gp', '<Cmd>Git push<CR>', { desc = '[G]it [P]ush' })
+local nmap = require 'utils'.leaderNmap
+leaderNmap('gc', '<Cmd>Git commit<CR>', '[G]it [C]ommit')
+leaderNmap('gp', '<Cmd>Git push<CR>', '[G]it [P]ush')
