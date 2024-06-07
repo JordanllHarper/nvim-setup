@@ -1,7 +1,7 @@
 local M = {}
 
 function M.map(mode, lhs, rhs, desc)
-	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
+	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, noremap = true })
 end
 
 function M.nmap(lhs, rhs, desc)
