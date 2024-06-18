@@ -1,12 +1,4 @@
 local opts = {
-  -- See `:help gitsigns.txt`
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
     vim.keymap.set('n', '<leader>gh', gs.preview_hunk, { buffer = bufnr, desc = '[G]it [H]unk' })
