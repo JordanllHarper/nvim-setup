@@ -32,6 +32,9 @@ require('lazy').setup({
   defaults = {
     lazy = true
   },
+  dev = {
+    path = "~/projects"
+  },
   checker = {
     enabled = true
   },
