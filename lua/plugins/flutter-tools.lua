@@ -1,5 +1,6 @@
 return {
 	'akinsho/flutter-tools.nvim',
+	dev = true,
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{
